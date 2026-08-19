@@ -1,0 +1,46 @@
+name: Generate OG preview images
+
+# Runs generate-og-images.js in CI (so you don't need Node/Playwright
+# installed locally) and commits the resulting PNGs back to the repo.
+# GitHub Pages then serves them like any other static file on its next
+# deploy - no extra Pages configuration needed.
+#
+# Triggers only when the card template or the target list changes, and
+# only touches assets/og/*.png when it commits - so this workflow never
+# re-triggers itself.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "og-preview.html"
+      - "generate-og-images.js"
+  workflow_dispatch: # lets you click "Run workflow" manually from the Actions tab
+
+permissions:
+  contents: write # required for the auto-commit step to push back to the repo
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Playwright + Chromium
+        run: |
+          npm init -y
+          npm i -D playwright
+          npx playwright install --with-deps chromium
+
+      - name: Render the OG images
+        run: node generate-og-images.js
+
+      - name: Commit the generated PNGs
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: regenerate OG preview images"
+          file_pattern: "assets/og/*.png"
