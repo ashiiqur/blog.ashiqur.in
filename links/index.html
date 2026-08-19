@@ -1,0 +1,2764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Links - ashiqur</title>
+<meta name="description" content="A handwritten notebook page of everywhere to find me online.">
+<link rel="canonical" href="https://blog.ashiqur.in/links/">
+
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ashiqur">
+<meta property="og:title" content="All Links">
+<meta property="og:description" content="A handwritten notebook page of everywhere to find me online.">
+<meta property="og:url" content="https://blog.ashiqur.in/links/">
+<meta property="og:image" content="https://blog.ashiqur.in/assets/og/links.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ashiqur_sf">
+<meta name="twitter:title" content="All Links">
+<meta name="twitter:description" content="A handwritten notebook page of everywhere to find me online.">
+<meta name="twitter:image" content="https://blog.ashiqur.in/assets/og/links.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Patrick+Hand&family=Special+Elite&display=swap" rel="stylesheet">
+<script>
+/* Hold the page hidden (see the html:not(.fonts-ready) rule below) until
+   the actual webfonts have finished loading, so nothing ever flashes in
+   the browser's fallback font first. A short timeout is a safety net in
+   case a font request stalls, so the page never stays hidden forever. */
+(function(){
+  function reveal(){ document.documentElement.classList.add("fonts-ready"); }
+  if (document.fonts && document.fonts.ready){
+    Promise.race([
+      Promise.all([
+        document.fonts.load('700 1em Caveat'),
+        document.fonts.load('600 1em Caveat'),
+        document.fonts.load('400 1em "Patrick Hand"'),
+        document.fonts.load('400 1em "Special Elite"')
+      ]).then(function(){ return document.fonts.ready; }),
+      new Promise(function(resolve){ setTimeout(resolve, 3000); })
+    ]).then(reveal, reveal);
+  } else {
+    reveal();
+  }
+})();
+</script>
+<noscript><style>html{ visibility:visible !important; }</style></noscript>
+<style>
+  :root{
+    --paper:#f7f2e6;
+    --paper-edge:#ece2cc;
+    --desk:#b7ab93;
+    --ink:#2c3a52;
+    --ink-soft:#54617c;
+    --rule:#b9cae7;
+    --margin:#cf7972;
+    --tape-yellow:#f2d98a;
+    --tape-pink:#eeb7c3;
+    --tape-mint:#b6d8c8;
+    --string:#e0601e;
+    --shadow:rgba(35,30,20,.28);
+    --font-display:'Caveat',cursive;
+    --font-hand:'Patrick Hand',cursive;
+    --font-type:'Special Elite',monospace;
+
+    /* ink as raw r,g,b so it can be tinted with alpha elsewhere (rgba(var(--ink-rgb),x)) —
+       keeps overlays/blur tints tied to the theme instead of hardcoded colors */
+    --ink-rgb:44,58,82;
+    /* base blur strength for the hidden side photos; scales up on wider
+       viewports (see media queries below) so it stays proportionate to the
+       bigger photo frames instead of looking under/over-blurred */
+    --photo-blur:9px;
+  }
+
+  @media (min-width:760px){
+    :root{ --photo-blur:11px; }
+  }
+  @media (min-width:1100px){
+    :root{ --photo-blur:13px; }
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+
+  /* keep the page invisible until the "fonts-ready" class above lands, so
+     the very first paint already has the real webfonts — no fallback-font
+     flash while Caveat / Patrick Hand / Special Elite finish loading */
+  html:not(.fonts-ready){ visibility:hidden; }
+  html.fonts-ready{ visibility:visible; }
+
+  body{
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(255,255,255,.10), transparent 45%),
+      radial-gradient(circle at 85% 90%, rgba(0,0,0,.10), transparent 50%),
+      var(--desk);
+    display:flex;
+    justify-content:center;
+    padding:48px 16px 80px;
+    font-family:var(--font-hand);
+    color:var(--ink);
+  }
+
+  /* ============ THE NOTEBOOK PAGE ============ */
+  .page{
+    position:relative;
+    width:100%;
+    max-width:640px;
+    background-color:var(--paper);
+    background-image:
+      repeating-linear-gradient(to bottom, var(--rule) 0, var(--rule) 1px, transparent 1px, transparent 34px),
+      radial-gradient(circle at 25% 20%, rgba(0,0,0,.025), transparent 40%),
+      radial-gradient(circle at 80% 75%, rgba(0,0,0,.03), transparent 45%);
+    padding:38px 26px 34px 92px;
+    border-radius:2px;
+    box-shadow:0 18px 40px var(--shadow), 0 3px 8px rgba(0,0,0,.15);
+    transform:rotate(-0.6deg);
+    animation:settle .7s ease-out;
+    transition:max-width .2s ease;
+  }
+  @keyframes settle{
+    from{opacity:0; transform:rotate(-0.6deg) translateY(14px);}
+    to{opacity:1; transform:rotate(-0.6deg) translateY(0);}
+  }
+
+  /* ============ CUSTOM SCROLLBAR (theme-matched) ============ */
+  html{
+    scrollbar-width:thin;
+    scrollbar-color:var(--margin) var(--desk);
+  }
+  ::-webkit-scrollbar{ width:16px; }
+  ::-webkit-scrollbar-track{
+    background:var(--desk);
+    border-left:1px solid rgba(0,0,0,.15);
+  }
+  ::-webkit-scrollbar-thumb{
+    background-color:var(--margin);
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7 12V6a4 4 0 0 1 8 0v9a2.5 2.5 0 0 1-5 0V8' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:10px 10px;
+    border-radius:9px;
+    border:3px solid var(--desk);
+    background-clip:padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover{ background-color:var(--ink); }
+
+  /* ============ SCROLL POSITION NOTE ============ */
+  .scroll-note{
+    position:fixed;
+    top:50%;
+    right:26px;
+    transform:translateY(-50%) translateX(14px) rotate(-3deg);
+    display:flex;
+    align-items:center;
+    gap:6px;
+    background:var(--tape-yellow);
+    color:var(--ink);
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:19px;
+    line-height:1;
+    padding:7px 14px 8px 10px;
+    border-radius:3px;
+    box-shadow:0 4px 10px rgba(35,30,20,.25);
+    opacity:0;
+    pointer-events:none;
+    z-index:50;
+    transition:opacity .25s ease, transform .25s ease, top .12s linear;
+    white-space:nowrap;
+  }
+  .scroll-note::before{
+    content:"";
+    position:absolute;
+    top:-8px; left:14px;
+    width:26px; height:14px;
+    background:var(--tape-pink);
+    opacity:.85;
+    transform:rotate(-6deg);
+    mix-blend-mode:multiply;
+  }
+  .scroll-note.visible{
+    opacity:1;
+    transform:translateY(-50%) translateX(0) rotate(-2deg);
+  }
+  .scroll-note-pin{ width:16px; height:16px; flex-shrink:0; color:var(--ink); }
+  .scroll-note-pin svg{ width:100%; height:100%; }
+  .scroll-note-pin path{ fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+
+  @media (max-width:480px){
+    .scroll-note{ right:10px; font-size:16px; padding:6px 10px 7px 8px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .scroll-note{ transition:opacity .01ms; }
+  }
+
+  /* folded corner, top right */
+  .page::before{
+    content:"";
+    position:absolute;
+    top:0; right:0;
+    width:0; height:0;
+    border-style:solid;
+    border-width:0 30px 30px 0;
+    border-color:transparent var(--paper-edge) transparent transparent;
+    filter:drop-shadow(-2px 2px 2px rgba(0,0,0,.18));
+  }
+
+  /* spiral-bound holes, left edge */
+  .holes{
+    position:absolute;
+    left:16px; top:18px; bottom:18px;
+    width:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .hole{
+    width:14px; height:14px;
+    border-radius:50%;
+    background:var(--desk);
+    box-shadow:inset 0 2px 3px rgba(0,0,0,.35);
+    flex-shrink:0;
+  }
+
+  /* red margin rule */
+  .margin-line{
+    position:absolute;
+    top:0; bottom:0; left:62px;
+    width:2px;
+    background:var(--margin);
+    opacity:.55;
+  }
+
+  /* ============ HEADER ============ */
+  .page-head{ text-align:center; padding-top:4px; max-width:480px; margin:0 auto; }
+
+  .polaroid{
+    position:relative;
+    z-index:2;
+    width:150px;
+    margin:0 auto 6px;
+    background:#fffdf8;
+    padding:10px 10px 26px;
+    box-shadow:0 8px 16px rgba(0,0,0,.22);
+    transform:rotate(-4deg);
+  }
+
+  /* ============ PHOTO CLUSTER: side photos + connecting string ============ */
+  .photo-cluster{
+    position:relative;
+    width:150px;
+    margin:0 auto;
+  }
+  /* ---- side photos: torn-paper edges instead of a clean frame ----
+     Each side has its own jagged clip-path "rip" pattern (so the two
+     don't match each other, same as a real torn edge wouldn't) and no
+     drawn border — the ragged silhouette itself is the edge. Shadow
+     uses filter:drop-shadow instead of box-shadow so it follows the
+     torn outline rather than sitting behind it as a plain rectangle. */
+  /* ---- wrapper: holds position/size/rotation for a side photo. Left
+     unclipped (no overflow, no clip-path) so the tape seal — a child of
+     this wrapper, not of the button below — can hang half above the
+     torn photo instead of being cut off by its jagged top edge. ---- */
+  .photo-slot{
+    display:none;
+    position:absolute;
+    z-index:1;
+    margin:0;
+    padding:0;
+  }
+  .photo-slot-left{
+    width:104px; height:104px;
+    right:calc(100% + 30px);
+    top:54px;
+    transform:rotate(-6deg);
+  }
+  .photo-slot-right{
+    width:126px; height:112px;
+    left:calc(100% + 30px);
+    top:100px;
+    transform:rotate(5deg);
+  }
+  .side-photo{
+    display:block;
+    position:absolute;
+    inset:0;
+    width:100%; height:100%;
+    margin:0;
+    padding:0;
+    background:var(--paper);
+    border:none;
+    overflow:hidden;
+    filter:drop-shadow(0 6px 10px rgba(35,30,20,.32));
+    cursor:pointer;
+    -webkit-appearance:none;
+    appearance:none;
+  }
+  .side-photo:focus-visible{
+    outline:2px dashed var(--ink);
+    outline-offset:3px;
+  }
+  .side-photo-left{
+    clip-path:polygon(0% 0%, 20% 1.5%, 40% -5.5%, 60% 8.4%, 80% 7.6%, 100% 0%, 99.4% 20%, 102.9% 40%, 94.9% 60%, 95% 80%, 100% 100%, 80% 96.2%, 60% 103.5%, 40% 94.8%, 20% 108.5%, 0% 100%, -7.7% 80%, -5.5% 60%, -7.4% 40%, 4.9% 20%);
+  }
+  .side-photo-right{
+    clip-path:polygon(0% 0%, 20% 4.7%, 40% 2.6%, 60% -1.6%, 80% -5.4%, 100% 0%, 103.2% 20%, 108.4% 40%, 98.7% 60%, 106.3% 80%, 100% 100%, 80% 91.6%, 60% 100.5%, 40% 94.6%, 20% 99.9%, 0% 100%, 2% 80%, 6.4% 60%, 0.4% 40%, 6.6% 20%);
+  }
+  .side-photo-img{
+    display:none;
+    width:100%; height:100%;
+    object-fit:cover;
+    filter:blur(var(--photo-blur)) saturate(.9);
+    transform:scale(1.12);
+    transition:filter .5s ease, transform .5s ease;
+    -webkit-user-drag:none;
+    user-select:none;
+    -webkit-touch-callout:none; /* blocks the iOS long-press "Save Image" menu */
+  }
+  .side-photo.revealed .side-photo-img{
+    filter:blur(0) saturate(1);
+    transform:scale(1);
+  }
+  /* ---- blur wanders while a side photo is still hidden, instead of
+     sitting at one fixed strength — makes the disguise feel alive
+     rather than a flat frosted pane. Irregular keyframe stops (not an
+     even 25/50/75 split) avoid a metronome feel, and each side runs
+     its own duration + a negative delay so they're never in step. ---- */
+  .side-photo.has-photo:not(.revealed) .side-photo-img{
+    animation:blurDrift 8s ease-in-out infinite;
+  }
+  .side-photo-right.has-photo:not(.revealed) .side-photo-img{
+    animation-duration:10.5s;
+    animation-delay:-4.2s;
+  }
+  @keyframes blurDrift{
+    0%   { filter:blur(calc(var(--photo-blur) * .7))  saturate(.82); }
+    17%  { filter:blur(calc(var(--photo-blur) * 1.2)) saturate(.95); }
+    33%  { filter:blur(calc(var(--photo-blur) * .55)) saturate(.78); }
+    52%  { filter:blur(calc(var(--photo-blur) * 1.35)) saturate(1); }
+    68%  { filter:blur(calc(var(--photo-blur) * .9))  saturate(.86); }
+    84%  { filter:blur(calc(var(--photo-blur) * 1.1)) saturate(.9); }
+    100% { filter:blur(calc(var(--photo-blur) * .7))  saturate(.82); }
+  }
+  /* once revealed the button has done its job: kill click, hover and
+     right-click/long-press targeting so the photo can't be re-triggered,
+     dragged out, or "copy image"/"copy image address"-d from the menu */
+  .side-photo.revealed{
+    cursor:default;
+    pointer-events:none;
+  }
+
+  /* ---- fallback doodle shown when a side photo has no image ---- */
+  .side-photo-fallback{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--ink-soft);
+  }
+  .side-photo-fallback svg{ width:56%; height:56%; }
+  .side-photo-fallback path,
+  .side-photo-fallback circle{
+    fill:none;
+    stroke:currentColor;
+    stroke-width:2.6;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+  /* once a real photo loads, has-photo is added and the doodle steps aside */
+  .side-photo.has-photo .side-photo-fallback{ display:none; }
+  /* ---- slow liquid color blend hiding a loaded-but-unrevealed photo ----
+     Sits on top of the (still blurred) img so nothing in the picture is
+     recognizable pre-reveal. Colors come straight from the theme palette.
+     Two blob layers drift at different speeds/directions so the blend
+     feels alive rather than a single loop repeating in place. */
+  .side-photo-liquid{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    background:var(--paper-edge);
+    opacity:1;
+    transition:opacity .6s ease;
+  }
+  .side-photo-liquid::before,
+  .side-photo-liquid::after{
+    content:"";
+    position:absolute;
+    inset:-30%;
+    filter:blur(20px) saturate(1.2);
+  }
+  .side-photo-liquid::before{
+    background:
+      radial-gradient(circle at 22% 28%, var(--tape-pink)   0%, transparent 52%),
+      radial-gradient(circle at 76% 18%, var(--tape-mint)   0%, transparent 52%),
+      radial-gradient(circle at 30% 78%, var(--tape-yellow) 0%, transparent 52%),
+      radial-gradient(circle at 82% 74%, var(--string)      0%, transparent 50%),
+      radial-gradient(circle at 52% 50%, var(--margin)      0%, transparent 58%);
+    animation:liquidDriftA 9s ease-in-out infinite alternate;
+  }
+  .side-photo-liquid::after{
+    mix-blend-mode:soft-light;
+    background:
+      radial-gradient(circle at 68% 30%, var(--tape-yellow) 0%, transparent 48%),
+      radial-gradient(circle at 20% 62%, var(--string)      0%, transparent 50%),
+      radial-gradient(circle at 60% 84%, var(--tape-pink)   0%, transparent 52%),
+      radial-gradient(circle at 88% 90%, var(--tape-mint)   0%, transparent 46%);
+    animation:liquidDriftB 6.5s ease-in-out infinite alternate;
+  }
+  .side-photo:not(.has-photo) .side-photo-liquid{ display:none; }
+  .side-photo.revealed .side-photo-liquid{ opacity:0; }
+  @keyframes liquidDriftA{
+    0%   { transform:translate(-5%,-3%) scale(1.05) rotate(0deg);   filter:blur(20px) saturate(1.2) hue-rotate(0deg); }
+    20%  { transform:translate(4%,3%)   scale(1.14) rotate(8deg);   filter:blur(22px) saturate(1.25) hue-rotate(6deg); }
+    45%  { transform:translate(-3%,5%)  scale(1.08) rotate(-6deg);  filter:blur(19px) saturate(1.15) hue-rotate(-5deg); }
+    70%  { transform:translate(5%,-4%)  scale(1.18) rotate(5deg);   filter:blur(23px) saturate(1.3)  hue-rotate(4deg); }
+    100% { transform:translate(-4%,2%)  scale(1.06) rotate(-4deg);  filter:blur(20px) saturate(1.2)  hue-rotate(-3deg); }
+  }
+  @keyframes liquidDriftB{
+    0%   { transform:translate(4%,-4%)  scale(1.1)  rotate(0deg); }
+    30%  { transform:translate(-5%,3%)  scale(1.2)  rotate(-10deg); }
+    55%  { transform:translate(3%,5%)   scale(1.05) rotate(7deg); }
+    80%  { transform:translate(-3%,-5%) scale(1.15) rotate(-6deg); }
+    100% { transform:translate(5%,2%)   scale(1.1)  rotate(9deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .side-photo-liquid::before,
+    .side-photo-liquid::after{ animation:none; }
+    .side-photo-img{ animation:none; }
+  }
+  .string-doodle{ display:none; }
+  @media (min-width:760px){
+    .photo-slot{ display:block; }
+    /* the right torn photo now hangs lower than the cluster's own
+       height (set by the polaroid) — extra clearance keeps it from
+       overlapping the name/subtitle text below. */
+    .photo-cluster{ margin-bottom:52px; }
+  }
+  /* ---- washi-tape seals on the side photos (same idea as .tape on the
+     main polaroid, in the cluster's other two accent colors) ---- */
+  .side-tape{
+    position:absolute;
+    top:-8px; left:50%;
+    width:40px; height:16px;
+    opacity:.8;
+    mix-blend-mode:multiply;
+    pointer-events:none;
+    z-index:2;
+  }
+  .side-tape-left{ background:var(--tape-pink); transform:translateX(-50%) rotate(-9deg); }
+  .side-tape-right{ background:var(--tape-mint); transform:translateX(-50%) rotate(8deg); }
+  .tape{
+    position:absolute;
+    top:-12px; left:50%;
+    width:64px; height:22px;
+    background:var(--tape-yellow);
+    opacity:.8;
+    transform:translateX(-50%) rotate(-4deg);
+    mix-blend-mode:multiply;
+  }
+  .photo-frame{
+    position:relative;
+    width:100%;
+    aspect-ratio:1/1;
+    background:#eee6d4;
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .profile-photo{
+    display:none;
+    width:100%; height:100%;
+    object-fit:cover;
+    -webkit-user-drag:none;
+    user-select:none;
+    -webkit-touch-callout:none; /* blocks the iOS long-press "Save Image" menu */
+  }
+  .avatar{ width:78%; height:78%; color:var(--ink-soft); }
+  .avatar path,.avatar circle{ fill:none; stroke:currentColor; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+  .avatar .fill{ fill:currentColor; stroke:none; }
+  .polaroid-caption{
+    position:absolute; bottom:4px; left:0; right:0;
+    text-align:center;
+    font-size:13px;
+    color:var(--ink-soft);
+    margin:0;
+  }
+
+  .title{
+    position:relative;
+    display:inline-block;
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(46px,10vw,64px);
+    margin:10px 0 0;
+    line-height:1;
+  }
+  .title-link{
+    color:inherit;
+    text-decoration:none;
+    transition:color .18s ease;
+  }
+  .title-link:hover, .title-link:focus-visible{
+    color:var(--margin);
+  }
+  .title-link:focus-visible{
+    outline:2px dashed var(--ink);
+    outline-offset:6px;
+    border-radius:6px;
+  }
+  .underline-doodle{
+    display:block;
+    width:100%; height:14px;
+    margin-top:-4px;
+  }
+  .underline-doodle svg{ width:100%; height:100%; overflow:visible; }
+  .underline-doodle path{ fill:none; stroke:var(--margin); stroke-width:3; stroke-linecap:round; }
+
+  .subtitle{
+    font-size:18px;
+    color:var(--ink-soft);
+    margin:10px auto 4px;
+    max-width:38ch;
+  }
+  .typed-hint{
+    font-family:var(--font-type);
+    font-size:12px;
+    letter-spacing:.03em;
+    color:var(--ink-soft);
+    opacity:.75;
+    margin:2px 0 0;
+  }
+
+  .rule-break{
+    border:none;
+    border-top:2px dashed rgba(44,58,82,.25);
+    margin:26px 0;
+  }
+
+  /* ============ SECTION HEADINGS ============ */
+  .link-group + .link-group{ margin-top:32px; }
+  .section-heading{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:30px;
+    margin:0 0 16px;
+    color:var(--ink);
+  }
+  .section-heading .star{
+    color:var(--margin);
+    font-size:19px;
+    display:inline-block;
+    transform:rotate(-10deg);
+  }
+  .section-heading::after{
+    content:"";
+    flex:1;
+    border-top:1.5px dashed rgba(44,58,82,.3);
+    margin-left:6px;
+  }
+
+  /* ============ LINK CARDS ============ */
+  .links-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:22px;
+  }
+
+  .card{
+    position:relative;
+    padding:16px 18px 44px;
+    background:#fffdf8;
+    border:1.5px solid rgba(44,58,82,.35);
+    border-radius:10px 13px 9px 12px / 12px 9px 14px 8px;
+    box-shadow:0 4px 0 rgba(0,0,0,.05), 0 6px 14px rgba(35,30,20,.12);
+    transform:rotate(var(--rot,0deg));
+    opacity:0;
+    animation:card-in .5s ease-out forwards;
+    animation-delay:var(--delay,0ms);
+    transition:transform .22s ease, box-shadow .22s ease;
+  }
+  @keyframes card-in{
+    from{ opacity:0; transform:rotate(var(--rot,0deg)) translateY(10px); }
+    to{ opacity:1; transform:rotate(var(--rot,0deg)) translateY(0); }
+  }
+  .card:hover, .card:focus-within{
+    transform:rotate(0deg) translateY(-4px);
+    box-shadow:0 4px 0 rgba(0,0,0,.05), 0 14px 22px rgba(35,30,20,.20);
+  }
+
+  .tape-piece{
+    position:absolute;
+    top:-11px; left:50%;
+    width:58px; height:20px;
+    background:var(--tape,var(--tape-yellow));
+    opacity:.85;
+    transform:translateX(-50%) rotate(-3deg);
+    mix-blend-mode:multiply;
+    pointer-events:none;
+  }
+
+  .card-link{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    width:100%;
+    color:inherit;
+    text-decoration:none;
+  }
+  .card-link:focus-visible{
+    outline:2px dashed var(--ink);
+    outline-offset:4px;
+    border-radius:6px;
+  }
+
+  .card-icon{ flex-shrink:0; width:40px; height:40px; color:var(--ink); }
+  .card-arrow{ flex-shrink:0; width:20px; height:20px; color:var(--ink-soft); transition:transform .22s ease, color .22s ease; }
+  .copy-icon{ width:16px; height:16px; display:block; }
+
+  /* ---- little QR square, taped on like a Polaroid corner ----
+     background uses the card's own --tape colour (yellow/pink/mint,
+     cycled per card — same swatch as the tape-piece above it) instead
+     of flat paper, so each QR reads as a themed sticky-swatch. It's
+     also a real click target now (opens the enlarge modal below), so
+     it gets its own cursor, focus ring and hover lift. */
+  .card-qr{
+    flex-shrink:0;
+    width:52px; height:52px;
+    padding:5px;
+    background:var(--tape, var(--paper));
+    border:1.5px dashed rgba(44,58,82,.4);
+    border-radius:7px;
+    transform:rotate(var(--qr-rot,-3deg));
+    box-shadow:0 2px 5px rgba(35,30,20,.14);
+    transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease, filter .18s ease;
+    cursor:zoom-in;
+  }
+  .card-qr svg{ width:100%; height:100%; display:block; }
+  .card-qr svg rect{ fill:var(--ink); }
+  .card:hover .card-qr, .card:focus-within .card-qr{
+    transform:rotate(0deg) scale(1.06);
+    border-color:var(--margin);
+    box-shadow:0 4px 9px rgba(35,30,20,.2);
+  }
+  .card-qr:hover, .card-qr:focus-visible{ filter:brightness(1.06); }
+  .card-qr:focus-visible{
+    outline:2px dashed var(--ink);
+    outline-offset:3px;
+  }
+
+  .card-icon svg, .card-arrow svg, .copy-icon svg{ width:100%; height:100%; }
+  .card-icon path, .card-icon circle, .card-icon rect,
+  .card-arrow path, .card-arrow circle, .card-arrow rect,
+  .copy-icon path, .copy-icon circle, .copy-icon rect{
+    fill:none; stroke:currentColor; stroke-width:2.3;
+    stroke-linecap:round; stroke-linejoin:round;
+  }
+  .card-icon .fill, .card-arrow .fill, .copy-icon .fill{ fill:currentColor; stroke:none; }
+
+  .card:hover .card-arrow, .card:focus-within .card-arrow{ transform:rotate(45deg) translate(2px,-2px); color:var(--margin); }
+
+  .card-text{ display:flex; flex-direction:column; min-width:0; flex:1; }
+  .card-label{
+    position:relative;
+    display:inline-block;
+    width:fit-content;
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:26px;
+    line-height:1;
+  }
+  .ink-underline{
+    position:absolute; left:0; bottom:-3px;
+    height:2px; width:0;
+    background:var(--margin);
+    transition:width .25s ease;
+  }
+  .card:hover .ink-underline, .card:focus-within .ink-underline{ width:100%; }
+
+  .card-handle{
+    font-family:var(--font-type);
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin-top:4px;
+  }
+  .card-note{
+    font-size:15px;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+
+  /* ---- copy-link button ---- */
+  .copy-btn{
+    position:absolute;
+    bottom:8px; right:12px;
+    width:30px; height:30px;
+    border-radius:50%;
+    border:1.5px dashed rgba(44,58,82,.4);
+    background:transparent;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ink-soft);
+    cursor:pointer;
+    padding:0;
+    transition:background .2s ease, color .2s ease, transform .15s ease, border-color .2s ease;
+    font-family:var(--font-hand);
+  }
+  .copy-btn:hover{
+    background:rgba(44,58,82,.08);
+    color:var(--ink);
+    border-color:var(--ink);
+    transform:scale(1.08);
+  }
+  .copy-btn:focus-visible{
+    outline:2px dashed var(--ink);
+    outline-offset:3px;
+  }
+  .copy-btn.just-copied{
+    color:#3f7a5c;
+    border-color:#3f7a5c;
+  }
+  .copy-toast{
+    position:absolute;
+    bottom:38px; right:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--font-type);
+    font-size:11px;
+    padding:4px 9px;
+    border-radius:4px;
+    white-space:nowrap;
+    opacity:0;
+    transform:translateY(4px);
+    transition:opacity .2s ease, transform .2s ease;
+    pointer-events:none;
+  }
+  .copy-toast.show{ opacity:1; transform:translateY(0); }
+
+  /* ============ FOOTER ============ */
+  .page-foot{ text-align:center; margin-top:6px; }
+  .footnote{
+    font-family:var(--font-type);
+    font-size:12px;
+    color:var(--ink-soft);
+    opacity:.7;
+  }
+
+  /* ============ DESKTOP: wider page, two-column grid ============ */
+  @media (min-width:760px){
+    .page{ max-width:940px; }
+    .links-grid{ grid-template-columns:1fr 1fr; gap:24px 28px; }
+  }
+
+  /* ============ MOBILE ============ */
+  @media (max-width:480px){
+    .page{ padding:32px 18px 28px 66px; }
+    .holes{ left:10px; width:14px; }
+    .hole{ width:10px; height:10px; }
+    .margin-line{ left:42px; }
+    .title{ font-size:clamp(38px,13vw,52px); }
+    .card{ padding:12px 14px 40px; }
+    .card-icon{ width:34px; height:34px; }
+    .card-qr{ width:42px; height:42px; padding:4px; }
+    .card-label{ font-size:23px; }
+    .section-heading{ font-size:26px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .page, .card{ animation:none !important; opacity:1 !important; transform:rotate(var(--rot,0deg)) !important; }
+    .card-icon path,.card-icon circle,.card-icon rect{ stroke-dashoffset:0 !important; }
+  }
+
+  /* ============ QR ENLARGE MODAL ============
+     Tapping a card's little QR square pops this up with a much bigger,
+     easier-to-scan version — background tinted to match that card's
+     own tape swatch, so it still reads as "the same QR, just bigger". */
+  .qr-modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(var(--ink-rgb),.55);
+    backdrop-filter:blur(2px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    z-index:1000;
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .22s ease, visibility 0s linear .22s;
+  }
+  .qr-modal-overlay.open{
+    opacity:1;
+    visibility:visible;
+    transition:opacity .22s ease, visibility 0s;
+  }
+  .qr-modal{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    width:100%;
+    max-width:300px;
+    background:var(--paper);
+    border-radius:4px;
+    padding:36px 24px 24px;
+    box-shadow:0 20px 44px rgba(0,0,0,.35), 0 4px 10px rgba(0,0,0,.2);
+    transform:scale(.85) rotate(-1.1deg);
+    transition:transform .26s cubic-bezier(.22,.9,.32,1.28);
+  }
+  .qr-modal-overlay.open .qr-modal{ transform:scale(1) rotate(-1.1deg); }
+  .qr-modal-tape{
+    position:absolute;
+    top:-12px; left:50%;
+    width:66px; height:22px;
+    background:var(--tape-yellow);
+    opacity:.85;
+    transform:translateX(-50%) rotate(-2deg);
+    mix-blend-mode:multiply;
+    pointer-events:none;
+  }
+  .qr-modal-close{
+    position:absolute;
+    top:6px; right:6px;
+    width:32px; height:32px;
+    display:flex; align-items:center; justify-content:center;
+    background:none; border:none; padding:0;
+    color:var(--ink-soft);
+    border-radius:50%;
+    cursor:pointer;
+    transition:background .18s ease, color .18s ease;
+  }
+  .qr-modal-close svg{ width:16px; height:16px; }
+  .qr-modal-close path{ fill:none; stroke:currentColor; stroke-width:2.4; stroke-linecap:round; }
+  .qr-modal-close:hover, .qr-modal-close:focus-visible{
+    background:rgba(var(--ink-rgb),.08);
+    color:var(--ink);
+    outline:none;
+  }
+  /* download button — mirrors the close button, top-left corner */
+  .qr-modal-download{
+    position:absolute;
+    top:6px; left:6px;
+    width:32px; height:32px;
+    display:flex; align-items:center; justify-content:center;
+    background:none; border:none; padding:0;
+    color:var(--ink-soft);
+    border-radius:50%;
+    cursor:pointer;
+    transition:background .18s ease, color .18s ease, opacity .18s ease;
+  }
+  .qr-modal-download svg{ width:17px; height:17px; }
+  .qr-modal-download path{ fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+  .qr-modal-download:hover, .qr-modal-download:focus-visible{
+    background:rgba(var(--ink-rgb),.08);
+    color:var(--ink);
+    outline:none;
+  }
+  .qr-modal-download.is-busy{
+    opacity:.5;
+    cursor:wait;
+    pointer-events:none;
+  }
+  .qr-modal-qr{
+    width:min(64vw, 220px);
+    height:min(64vw, 220px);
+    padding:16px;
+    background:var(--paper);
+    border:1.5px dashed rgba(44,58,82,.4);
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(35,30,20,.18);
+    transition:background .2s ease;
+  }
+  .qr-modal-qr svg{ width:100%; height:100%; display:block; }
+  .qr-modal-qr svg rect{ fill:var(--ink); }
+  .qr-modal-label{
+    font-family:var(--font-display);
+    font-size:1.7rem;
+    font-weight:700;
+    margin:6px 0 0;
+    text-align:center;
+  }
+  .qr-modal-hint{
+    font-family:var(--font-hand);
+    color:var(--ink-soft);
+    font-size:.92rem;
+    margin:0;
+  }
+  .qr-modal-url{
+    font-family:var(--font-type);
+    font-size:.76rem;
+    color:var(--ink-soft);
+    word-break:break-all;
+    text-align:center;
+    margin:0;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .qr-modal{ transition:none; }
+  }
+
+  /* ============ DOODLE LAYER: freehand drawing over the page ============
+     A transparent canvas sits inside .page (so it scrolls and rotates
+     with it) and only captures taps/drags while "draw mode" is on —
+     otherwise pointer-events:none lets every card/link work as normal. */
+  .doodle-canvas{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:8;
+    pointer-events:none;
+    /* hidden by default, unconditionally — set in plain CSS rather than
+       toggled on by JS, so there is no window (however small) where the
+       canvas could paint at full opacity before a script gets a chance to
+       hide it. JS only ever moves this forward, from 0 to 1, exactly once. */
+    opacity:0;
+  }
+  .doodle-canvas.drawing-active{
+    pointer-events:auto;
+    touch-action:none;
+    cursor:crosshair;
+  }
+  /* the actual "show it" state — added once, after the page has fully
+     finished loading AND its own entrance animations (settle + card-in)
+     have finished playing. With no saved drawing, this is added instantly
+     at init — the empty canvas simply becomes usable right away. With a
+     saved drawing, the canvas is revealed here at opacity:1 while still
+     blank, and the strokes are then replayed onto it by JS (see
+     animateDrawIn) so the drawing appears to draw itself in, rather than
+     fading in already-complete. */
+  .doodle-canvas.doodle-revealed{
+    opacity:1;
+  }
+
+  .doodle-dock{
+    position:fixed;
+    left:50%;
+    bottom:max(16px, env(safe-area-inset-bottom));
+    transform:translateX(-50%);
+    z-index:900;
+    /* sized to exactly match the button below — this box IS the button's
+       own hit area, so opening/closing the toolbar (which lives in the
+       separately-anchored .doodle-toolbar-wrap) can never resize it and
+       can never nudge the button off the spot it was dropped on */
+    width:52px;
+    height:52px;
+    font-family:var(--font-hand);
+  }
+
+  .doodle-toolbar-wrap{
+    position:absolute;
+    bottom:calc(100% + 10px);
+    /* left/transform are set by JS (see positionToolbarWrap): centered on
+       the button whenever there's room, but nudged sideways (and/or up or
+       down) just far enough to stay fully on-screen when the button sits
+       near an edge. The button itself never moves to make room — it stays
+       exactly where it was dropped, and only the toolbar adjusts. */
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+  }
+  /* flipped when there isn't enough room above the button (e.g. it was
+     dragged near the top edge) — opens downward instead */
+  .doodle-toolbar-wrap.flip-down{
+    bottom:auto;
+    top:calc(100% + 10px);
+  }
+
+  .doodle-fab{
+    width:52px; height:52px;
+    border-radius:50%;
+    border:none;
+    background:var(--ink);
+    color:var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 8px 18px rgba(35,30,20,.35), 0 2px 5px rgba(0,0,0,.2);
+    cursor:grab;
+    touch-action:none;
+    transition:background .18s ease, transform .18s ease;
+    flex-shrink:0;
+  }
+  .doodle-fab svg{ width:22px; height:22px; }
+  .doodle-fab path{ fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  .doodle-fab:hover{ transform:translateY(-1px); }
+  .doodle-fab:active{ cursor:grabbing; }
+  .doodle-fab.active{ background:var(--string); }
+  /* mid-drag: the button grows slightly so it's clear it's "picked up",
+     then eases back to normal size the instant it's released */
+  .doodle-fab.dragging{
+    transform:scale(1.18);
+    box-shadow:0 12px 26px rgba(35,30,20,.4), 0 4px 10px rgba(0,0,0,.25);
+  }
+  /* while being dragged, kill text selection so the button tracks the
+     pointer exactly without the page trying to select nearby text */
+  .doodle-dock.dragging{ user-select:none; -webkit-user-select:none; }
+
+  .doodle-panel{
+    display:flex;
+    align-items:center;
+    gap:4px;
+    background:var(--paper);
+    border:1px solid rgba(var(--ink-rgb),.12);
+    border-radius:999px;
+    padding:6px;
+    box-shadow:0 10px 24px rgba(35,30,20,.3), 0 2px 6px rgba(0,0,0,.15);
+    animation:doodle-pop .18s ease-out;
+  }
+  @keyframes doodle-pop{
+    from{ opacity:0; transform:translateY(8px) scale(.94); }
+    to{ opacity:1; transform:translateY(0) scale(1); }
+  }
+
+  .doodle-btn{
+    width:38px; height:38px;
+    border-radius:50%;
+    border:none;
+    background:none;
+    color:var(--ink-soft);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    flex-shrink:0;
+    transition:background .15s ease, color .15s ease;
+  }
+  .doodle-btn svg{ width:18px; height:18px; }
+  .doodle-btn path{ fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  .doodle-btn:hover:not(:disabled){ background:rgba(var(--ink-rgb),.08); color:var(--ink); }
+  .doodle-btn:disabled{ opacity:.35; cursor:default; }
+  .doodle-btn.active{ background:var(--ink); color:var(--paper); }
+
+  .doodle-sep{ width:1px; height:22px; background:rgba(var(--ink-rgb),.15); margin:0 2px; flex-shrink:0; }
+
+  /* while draw mode is off, every toolbar control except the edit-mode
+     toggle itself is greyed out and inert — you have to switch drawing
+     on before pen/eraser/undo/redo/options/clear/save do anything */
+  .doodle-panel.locked > *:not(#doodle-editmode){
+    opacity:.35;
+    pointer-events:none;
+  }
+  .doodle-options.locked{
+    opacity:.35;
+    pointer-events:none;
+  }
+
+  .doodle-save{
+    position:relative;
+    height:38px;
+    padding:0 16px;
+    border-radius:999px;
+    border:none;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--font-hand);
+    font-size:16px;
+    cursor:pointer;
+    flex-shrink:0;
+    transition:background .15s ease, transform .1s ease;
+  }
+  .doodle-save:hover{ background:#233047; }
+  .doodle-save:active{ transform:scale(.96); }
+  .doodle-save:disabled{ opacity:.35; cursor:default; }
+  .doodle-save.unsaved::after{
+    content:"";
+    position:absolute;
+    top:2px; right:4px;
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--string);
+    border:1.5px solid var(--paper);
+  }
+
+  .doodle-options{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    background:var(--paper);
+    border:1px solid rgba(var(--ink-rgb),.12);
+    border-radius:16px;
+    padding:14px 16px;
+    box-shadow:0 10px 24px rgba(35,30,20,.3), 0 2px 6px rgba(0,0,0,.15);
+    width:min(84vw, 300px);
+    animation:doodle-pop .18s ease-out;
+  }
+  .doodle-options-row{ display:flex; align-items:center; gap:10px; }
+  .doodle-label{ font-size:15px; color:var(--ink-soft); width:64px; flex-shrink:0; }
+
+  /* the hidden attribute has to win over the flex display above, or the
+     toolbar/options card stay visible (and their JS toggle stops doing
+     anything) regardless of hidden being set — this is what made the
+     sliders and trash buttons look unresponsive */
+  .doodle-panel[hidden],
+  .doodle-options[hidden]{
+    display:none;
+  }
+
+  .doodle-pentypes{ display:flex; gap:6px; flex:1; }
+  .doodle-pentype{
+    flex:1;
+    padding:6px 4px;
+    font-family:var(--font-hand);
+    font-size:13px;
+    border-radius:8px;
+    border:1.5px solid rgba(var(--ink-rgb),.2);
+    background:none;
+    color:var(--ink-soft);
+    cursor:pointer;
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .doodle-pentype.active{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+
+  .doodle-options input[type="range"]{
+    flex:1;
+    accent-color:var(--ink);
+  }
+
+  .doodle-colors{ display:flex; gap:7px; flex:1; flex-wrap:wrap; }
+  .doodle-color{
+    width:24px; height:24px;
+    border-radius:50%;
+    border:2px solid transparent;
+    background:var(--c);
+    padding:0;
+    cursor:pointer;
+    box-shadow:0 0 0 1px rgba(var(--ink-rgb),.25);
+  }
+  .doodle-color.active{ border-color:var(--paper); box-shadow:0 0 0 2px var(--ink); }
+  .doodle-color-custom{
+    display:flex; align-items:center; justify-content:center;
+    background:conic-gradient(red,yellow,lime,cyan,blue,magenta,red);
+    position:relative;
+    overflow:hidden;
+  }
+  .doodle-color-custom input[type="color"]{
+    position:absolute; inset:-4px;
+    width:32px; height:32px;
+    border:none; padding:0; cursor:pointer;
+    opacity:0;
+  }
+
+  .doodle-toast{
+    position:fixed;
+    left:50%;
+    bottom:calc(52px + max(16px, env(safe-area-inset-bottom)) + 60px);
+    transform:translateX(-50%) translateY(6px);
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--font-hand);
+    font-size:15px;
+    padding:8px 16px;
+    border-radius:999px;
+    box-shadow:0 6px 16px rgba(0,0,0,.25);
+    z-index:901;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s ease, transform .2s ease;
+  }
+  .doodle-toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  @media (max-width:480px){
+    .doodle-dock{ width:46px; height:46px; }
+    .doodle-fab{ width:46px; height:46px; }
+    .doodle-fab svg{ width:19px; height:19px; }
+    .doodle-btn{ width:34px; height:34px; }
+    .doodle-panel{ gap:2px; padding:5px; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="avatar-pixel" viewBox="0 0 32 32">
+    <g fill="var(--accent, #2d4159)">
+<rect x="14" y="0" width="1" height="1" fill-opacity="0.01"/>
+<rect x="12" y="1" width="1" height="1" fill-opacity="0.01"/>
+<rect x="16" y="1" width="2" height="1" fill-opacity="0.01"/>
+<rect x="11" y="2" width="1" height="1" fill-opacity="0.01"/>
+<rect x="13" y="2" width="1" height="1" fill-opacity="0.04"/>
+<rect x="14" y="2" width="1" height="1" fill-opacity="0.13"/>
+<rect x="15" y="2" width="1" height="1" fill-opacity="0.08"/>
+<rect x="10" y="3" width="1" height="1" fill-opacity="0.01"/>
+<rect x="12" y="3" width="1" height="1" fill-opacity="0.17"/>
+<rect x="13" y="3" width="1" height="1" fill-opacity="0.85"/>
+<rect x="14" y="3" width="1" height="1" fill-opacity="0.98"/>
+<rect x="15" y="3" width="1" height="1" fill-opacity="0.93"/>
+<rect x="16" y="3" width="1" height="1" fill-opacity="0.72"/>
+<rect x="17" y="3" width="1" height="1" fill-opacity="0.25"/>
+<rect x="9" y="4" width="1" height="1" fill-opacity="0.01"/>
+<rect x="11" y="4" width="1" height="1" fill-opacity="0.17"/>
+<rect x="12" y="4" width="1" height="1" fill-opacity="0.91"/>
+<rect x="13" y="4" width="4" height="1"/>
+<rect x="17" y="4" width="1" height="1" fill-opacity="0.98"/>
+<rect x="18" y="4" width="1" height="1" fill-opacity="0.13"/>
+<rect x="20" y="4" width="1" height="1" fill-opacity="0.01"/>
+<rect x="9" y="5" width="1" height="1" fill-opacity="0.01"/>
+<rect x="11" y="5" width="1" height="1" fill-opacity="0.71"/>
+<rect x="12" y="5" width="1" height="1"/>
+<rect x="13" y="5" width="1" height="1" fill-opacity="0.98"/>
+<rect x="14" y="5" width="2" height="1"/>
+<rect x="16" y="5" width="1" height="1" fill-opacity="0.97"/>
+<rect x="17" y="5" width="1" height="1"/>
+<rect x="18" y="5" width="1" height="1" fill-opacity="0.41"/>
+<rect x="20" y="5" width="1" height="1" fill-opacity="0.02"/>
+<rect x="9" y="6" width="1" height="1" fill-opacity="0.01"/>
+<rect x="11" y="6" width="1" height="1" fill-opacity="0.53"/>
+<rect x="12" y="6" width="1" height="1"/>
+<rect x="13" y="6" width="1" height="1" fill-opacity="0.99"/>
+<rect x="14" y="6" width="2" height="1"/>
+<rect x="16" y="6" width="1" height="1" fill-opacity="0.98"/>
+<rect x="17" y="6" width="1" height="1"/>
+<rect x="18" y="6" width="1" height="1" fill-opacity="0.54"/>
+<rect x="20" y="6" width="1" height="1" fill-opacity="0.02"/>
+<rect x="12" y="7" width="1" height="1" fill-opacity="0.84"/>
+<rect x="13" y="7" width="1" height="1"/>
+<rect x="14" y="7" width="1" height="1" fill-opacity="0.99"/>
+<rect x="15" y="7" width="1" height="1"/>
+<rect x="16" y="7" width="1" height="1" fill-opacity="0.98"/>
+<rect x="17" y="7" width="1" height="1"/>
+<rect x="18" y="7" width="1" height="1" fill-opacity="0.45"/>
+<rect x="20" y="7" width="1" height="1" fill-opacity="0.02"/>
+<rect x="11" y="8" width="1" height="1" fill-opacity="0.03"/>
+<rect x="12" y="8" width="1" height="1" fill-opacity="0.83"/>
+<rect x="13" y="8" width="1" height="1"/>
+<rect x="14" y="8" width="1" height="1" fill-opacity="0.99"/>
+<rect x="15" y="8" width="2" height="1"/>
+<rect x="17" y="8" width="1" height="1" fill-opacity="0.96"/>
+<rect x="18" y="8" width="1" height="1" fill-opacity="0.13"/>
+<rect x="20" y="8" width="1" height="1" fill-opacity="0.01"/>
+<rect x="10" y="9" width="2" height="1" fill-opacity="0.01"/>
+<rect x="12" y="9" width="1" height="1" fill-opacity="0.66"/>
+<rect x="13" y="9" width="2" height="1" fill-opacity="0.99"/>
+<rect x="15" y="9" width="1" height="1" fill-opacity="0.98"/>
+<rect x="16" y="9" width="1" height="1"/>
+<rect x="17" y="9" width="1" height="1" fill-opacity="0.56"/>
+<rect x="19" y="9" width="1" height="1" fill-opacity="0.01"/>
+<rect x="10" y="10" width="1" height="1" fill-opacity="0.02"/>
+<rect x="12" y="10" width="1" height="1" fill-opacity="0.48"/>
+<rect x="13" y="10" width="1" height="1"/>
+<rect x="14" y="10" width="1" height="1" fill-opacity="0.98"/>
+<rect x="15" y="10" width="2" height="1"/>
+<rect x="17" y="10" width="1" height="1" fill-opacity="0.17"/>
+<rect x="18" y="10" width="1" height="1" fill-opacity="0.02"/>
+<rect x="19" y="10" width="1" height="1" fill-opacity="0.01"/>
+<rect x="10" y="11" width="1" height="1" fill-opacity="0.02"/>
+<rect x="12" y="11" width="1" height="1" fill-opacity="0.04"/>
+<rect x="13" y="11" width="1" height="1" fill-opacity="0.26"/>
+<rect x="14" y="11" width="1" height="1" fill-opacity="0.87"/>
+<rect x="15" y="11" width="2" height="1"/>
+<rect x="17" y="11" width="1" height="1" fill-opacity="0.33"/>
+<rect x="20" y="11" width="1" height="1" fill-opacity="0.02"/>
+<rect x="21" y="11" width="1" height="1" fill-opacity="0.01"/>
+<rect x="11" y="12" width="1" height="1" fill-opacity="0.01"/>
+<rect x="12" y="12" width="1" height="1" fill-opacity="0.2"/>
+<rect x="13" y="12" width="1" height="1" fill-opacity="0.58"/>
+<rect x="14" y="12" width="2" height="1" fill-opacity="0.99"/>
+<rect x="16" y="12" width="1" height="1"/>
+<rect x="17" y="12" width="1" height="1" fill-opacity="0.92"/>
+<rect x="18" y="12" width="1" height="1" fill-opacity="0.36"/>
+<rect x="19" y="12" width="1" height="1" fill-opacity="0.05"/>
+<rect x="22" y="12" width="1" height="1" fill-opacity="0.01"/>
+<rect x="8" y="13" width="1" height="1" fill-opacity="0.01"/>
+<rect x="10" y="13" width="1" height="1" fill-opacity="0.4"/>
+<rect x="11" y="13" width="1" height="1" fill-opacity="0.82"/>
+<rect x="12" y="13" width="7" height="1"/>
+<rect x="19" y="13" width="1" height="1" fill-opacity="0.88"/>
+<rect x="20" y="13" width="1" height="1" fill-opacity="0.56"/>
+<rect x="21" y="13" width="1" height="1" fill-opacity="0.15"/>
+<rect x="7" y="14" width="1" height="1" fill-opacity="0.01"/>
+<rect x="9" y="14" width="1" height="1" fill-opacity="0.53"/>
+<rect x="10" y="14" width="3" height="1"/>
+<rect x="13" y="14" width="1" height="1" fill-opacity="0.99"/>
+<rect x="14" y="14" width="4" height="1"/>
+<rect x="18" y="14" width="1" height="1" fill-opacity="0.99"/>
+<rect x="19" y="14" width="2" height="1"/>
+<rect x="21" y="14" width="1" height="1" fill-opacity="0.95"/>
+<rect x="22" y="14" width="1" height="1" fill-opacity="0.26"/>
+<rect x="24" y="14" width="1" height="1" fill-opacity="0.01"/>
+<rect x="6" y="15" width="1" height="1" fill-opacity="0.01"/>
+<rect x="8" y="15" width="1" height="1" fill-opacity="0.15"/>
+<rect x="9" y="15" width="1" height="1"/>
+<rect x="10" y="15" width="2" height="1" fill-opacity="0.99"/>
+<rect x="12" y="15" width="8" height="1"/>
+<rect x="20" y="15" width="1" height="1" fill-opacity="0.97"/>
+<rect x="21" y="15" width="1" height="1"/>
+<rect x="22" y="15" width="1" height="1" fill-opacity="0.78"/>
+<rect x="24" y="15" width="1" height="1" fill-opacity="0.01"/>
+<rect x="6" y="16" width="1" height="1" fill-opacity="0.02"/>
+<rect x="8" y="16" width="1" height="1" fill-opacity="0.42"/>
+<rect x="9" y="16" width="1" height="1"/>
+<rect x="10" y="16" width="1" height="1" fill-opacity="0.98"/>
+<rect x="11" y="16" width="11" height="1"/>
+<rect x="22" y="16" width="1" height="1" fill-opacity="0.91"/>
+<rect x="23" y="16" width="1" height="1" fill-opacity="0.05"/>
+<rect x="6" y="17" width="1" height="1" fill-opacity="0.02"/>
+<rect x="8" y="17" width="1" height="1" fill-opacity="0.51"/>
+<rect x="9" y="17" width="1" height="1"/>
+<rect x="10" y="17" width="2" height="1" fill-opacity="0.98"/>
+<rect x="12" y="17" width="1" height="1" fill-opacity="0.99"/>
+<rect x="13" y="17" width="6" height="1"/>
+<rect x="19" y="17" width="3" height="1" fill-opacity="0.99"/>
+<rect x="22" y="17" width="1" height="1" fill-opacity="0.95"/>
+<rect x="23" y="17" width="1" height="1" fill-opacity="0.1"/>
+<rect x="6" y="18" width="2" height="1" fill-opacity="0.01"/>
+<rect x="8" y="18" width="1" height="1" fill-opacity="0.79"/>
+<rect x="9" y="18" width="1" height="1" fill-opacity="0.98"/>
+<rect x="10" y="18" width="1" height="1" fill-opacity="0.99"/>
+<rect x="11" y="18" width="7" height="1"/>
+<rect x="18" y="18" width="1" height="1" fill-opacity="0.99"/>
+<rect x="19" y="18" width="3" height="1"/>
+<rect x="22" y="18" width="1" height="1" fill-opacity="0.97"/>
+<rect x="23" y="18" width="1" height="1" fill-opacity="0.06"/>
+<rect x="6" y="19" width="1" height="1" fill-opacity="0.01"/>
+<rect x="8" y="19" width="1" height="1" fill-opacity="0.48"/>
+<rect x="9" y="19" width="1" height="1"/>
+<rect x="10" y="19" width="1" height="1" fill-opacity="0.99"/>
+<rect x="11" y="19" width="1" height="1" fill-opacity="0.38"/>
+<rect x="12" y="19" width="1" height="1" fill-opacity="0.76"/>
+<rect x="13" y="19" width="1" height="1"/>
+<rect x="14" y="19" width="2" height="1" fill-opacity="0.99"/>
+<rect x="16" y="19" width="3" height="1"/>
+<rect x="19" y="19" width="1" height="1" fill-opacity="0.69"/>
+<rect x="20" y="19" width="1" height="1" fill-opacity="0.79"/>
+<rect x="21" y="19" width="1" height="1" fill-opacity="0.63"/>
+<rect x="22" y="19" width="1" height="1" fill-opacity="0.79"/>
+<rect x="23" y="19" width="1" height="1" fill-opacity="0.26"/>
+<rect x="25" y="19" width="1" height="1" fill-opacity="0.01"/>
+<rect x="8" y="20" width="1" height="1" fill-opacity="0.03"/>
+<rect x="9" y="20" width="1" height="1" fill-opacity="0.63"/>
+<rect x="10" y="20" width="1" height="1" fill-opacity="0.91"/>
+<rect x="11" y="20" width="1" height="1" fill-opacity="0.37"/>
+<rect x="12" y="20" width="1" height="1" fill-opacity="0.48"/>
+<rect x="13" y="20" width="4" height="1"/>
+<rect x="17" y="20" width="1" height="1" fill-opacity="0.44"/>
+<rect x="18" y="20" width="1" height="1" fill-opacity="0.8"/>
+<rect x="19" y="20" width="1" height="1" fill-opacity="0.2"/>
+<rect x="20" y="20" width="1" height="1" fill-opacity="0.33"/>
+<rect x="21" y="20" width="1" height="1" fill-opacity="0.4"/>
+<rect x="22" y="20" width="1" height="1" fill-opacity="0.77"/>
+<rect x="23" y="20" width="1" height="1" fill-opacity="0.76"/>
+<rect x="25" y="20" width="1" height="1" fill-opacity="0.01"/>
+<rect x="10" y="21" width="1" height="1" fill-opacity="0.88"/>
+<rect x="11" y="21" width="1" height="1" fill-opacity="0.93"/>
+<rect x="12" y="21" width="1" height="1" fill-opacity="0.86"/>
+<rect x="13" y="21" width="1" height="1" fill-opacity="0.64"/>
+<rect x="14" y="21" width="1" height="1" fill-opacity="0.24"/>
+<rect x="15" y="21" width="1" height="1" fill-opacity="0.8"/>
+<rect x="16" y="21" width="1" height="1"/>
+<rect x="17" y="21" width="1" height="1" fill-opacity="0.19"/>
+<rect x="18" y="21" width="1" height="1" fill-opacity="0.25"/>
+<rect x="19" y="21" width="1" height="1" fill-opacity="0.46"/>
+<rect x="20" y="21" width="1" height="1" fill-opacity="0.76"/>
+<rect x="21" y="21" width="1" height="1" fill-opacity="0.66"/>
+<rect x="22" y="21" width="1" height="1" fill-opacity="0.17"/>
+<rect x="23" y="21" width="1" height="1" fill-opacity="0.24"/>
+<rect x="8" y="22" width="1" height="1" fill-opacity="0.01"/>
+<rect x="9" y="22" width="1" height="1" fill-opacity="0.31"/>
+<rect x="10" y="22" width="1" height="1" fill-opacity="0.47"/>
+<rect x="11" y="22" width="1" height="1" fill-opacity="0.3"/>
+<rect x="12" y="22" width="1" height="1" fill-opacity="0.98"/>
+<rect x="13" y="22" width="1" height="1" fill-opacity="0.69"/>
+<rect x="14" y="22" width="1" height="1" fill-opacity="0.25"/>
+<rect x="15" y="22" width="1" height="1" fill-opacity="0.17"/>
+<rect x="16" y="22" width="1" height="1" fill-opacity="0.94"/>
+<rect x="17" y="22" width="1" height="1" fill-opacity="0.65"/>
+<rect x="18" y="22" width="1" height="1" fill-opacity="0.24"/>
+<rect x="19" y="22" width="1" height="1" fill-opacity="0.85"/>
+<rect x="20" y="22" width="1" height="1" fill-opacity="0.84"/>
+<rect x="21" y="22" width="1" height="1" fill-opacity="0.25"/>
+<rect x="22" y="22" width="1" height="1" fill-opacity="0.58"/>
+<rect x="23" y="22" width="1" height="1" fill-opacity="0.17"/>
+<rect x="25" y="22" width="1" height="1" fill-opacity="0.01"/>
+<rect x="7" y="23" width="1" height="1" fill-opacity="0.01"/>
+<rect x="9" y="23" width="1" height="1" fill-opacity="0.53"/>
+<rect x="10" y="23" width="1" height="1" fill-opacity="0.23"/>
+<rect x="11" y="23" width="1" height="1" fill-opacity="0.05"/>
+<rect x="12" y="23" width="1" height="1" fill-opacity="0.99"/>
+<rect x="13" y="23" width="1" height="1"/>
+<rect x="14" y="23" width="1" height="1" fill-opacity="0.6"/>
+<rect x="16" y="23" width="1" height="1" fill-opacity="0.56"/>
+<rect x="17" y="23" width="1" height="1" fill-opacity="0.87"/>
+<rect x="18" y="23" width="1" height="1" fill-opacity="0.11"/>
+<rect x="19" y="23" width="1" height="1"/>
+<rect x="20" y="23" width="1" height="1" fill-opacity="0.71"/>
+<rect x="22" y="23" width="1" height="1" fill-opacity="0.24"/>
+<rect x="23" y="23" width="1" height="1" fill-opacity="0.07"/>
+<rect x="10" y="24" width="1" height="1" fill-opacity="0.22"/>
+<rect x="11" y="24" width="1" height="1" fill-opacity="0.05"/>
+<rect x="12" y="24" width="1" height="1" fill-opacity="0.92"/>
+<rect x="13" y="24" width="2" height="1"/>
+<rect x="15" y="24" width="1" height="1" fill-opacity="0.03"/>
+<rect x="16" y="24" width="1" height="1" fill-opacity="0.48"/>
+<rect x="17" y="24" width="1" height="1" fill-opacity="0.98"/>
+<rect x="18" y="24" width="1" height="1" fill-opacity="0.03"/>
+<rect x="19" y="24" width="1" height="1" fill-opacity="0.47"/>
+<rect x="20" y="24" width="1" height="1" fill-opacity="0.64"/>
+<rect x="21" y="24" width="1" height="1" fill-opacity="0.26"/>
+<rect x="22" y="24" width="1" height="1" fill-opacity="0.07"/>
+<rect x="23" y="24" width="1" height="1" fill-opacity="0.02"/>
+<rect x="11" y="25" width="1" height="1" fill-opacity="0.01"/>
+<rect x="12" y="25" width="1" height="1" fill-opacity="0.44"/>
+<rect x="13" y="25" width="1" height="1" fill-opacity="0.97"/>
+<rect x="14" y="25" width="1" height="1" fill-opacity="0.84"/>
+<rect x="15" y="25" width="1" height="1" fill-opacity="0.26"/>
+<rect x="16" y="25" width="1" height="1" fill-opacity="0.95"/>
+<rect x="17" y="25" width="1" height="1"/>
+<rect x="18" y="25" width="1" height="1" fill-opacity="0.17"/>
+<rect x="19" y="25" width="1" height="1" fill-opacity="0.58"/>
+<rect x="20" y="25" width="1" height="1" fill-opacity="0.18"/>
+<rect x="21" y="25" width="1" height="1" fill-opacity="0.12"/>
+<rect x="9" y="26" width="1" height="1" fill-opacity="0.03"/>
+<rect x="10" y="26" width="1" height="1" fill-opacity="0.87"/>
+<rect x="11" y="26" width="1" height="1" fill-opacity="0.41"/>
+<rect x="12" y="26" width="1" height="1" fill-opacity="0.15"/>
+<rect x="13" y="26" width="1" height="1" fill-opacity="0.41"/>
+<rect x="14" y="26" width="1" height="1" fill-opacity="0.24"/>
+<rect x="15" y="26" width="1" height="1" fill-opacity="0.61"/>
+<rect x="16" y="26" width="2" height="1"/>
+<rect x="18" y="26" width="1" height="1" fill-opacity="0.24"/>
+<rect x="19" y="26" width="1" height="1" fill-opacity="0.15"/>
+<rect x="20" y="26" width="1" height="1" fill-opacity="0.05"/>
+<rect x="9" y="27" width="1" height="1" fill-opacity="0.01"/>
+<rect x="10" y="27" width="1" height="1" fill-opacity="0.45"/>
+<rect x="11" y="27" width="1" height="1" fill-opacity="0.14"/>
+<rect x="12" y="27" width="1" height="1" fill-opacity="0.12"/>
+<rect x="13" y="27" width="1" height="1" fill-opacity="0.09"/>
+<rect x="15" y="27" width="1" height="1" fill-opacity="0.83"/>
+<rect x="16" y="27" width="2" height="1"/>
+<rect x="18" y="27" width="1" height="1" fill-opacity="0.14"/>
+<rect x="14" y="28" width="1" height="1" fill-opacity="0.17"/>
+<rect x="15" y="28" width="1" height="1" fill-opacity="0.88"/>
+<rect x="16" y="28" width="1" height="1" fill-opacity="0.82"/>
+<rect x="17" y="28" width="1" height="1" fill-opacity="0.5"/>
+<rect x="19" y="28" width="1" height="1" fill-opacity="0.01"/>
+<rect x="9" y="29" width="1" height="1" fill-opacity="0.01"/>
+<rect x="10" y="29" width="1" height="1" fill-opacity="0.02"/>
+<rect x="11" y="29" width="1" height="1" fill-opacity="0.1"/>
+<rect x="12" y="29" width="1" height="1" fill-opacity="0.9"/>
+<rect x="13" y="29" width="1" height="1" fill-opacity="0.31"/>
+<rect x="14" y="29" width="1" height="1" fill-opacity="0.09"/>
+<rect x="15" y="29" width="1" height="1" fill-opacity="0.08"/>
+<rect x="16" y="29" width="1" height="1" fill-opacity="0.34"/>
+<rect x="17" y="29" width="1" height="1" fill-opacity="0.29"/>
+<rect x="19" y="29" width="1" height="1" fill-opacity="0.01"/>
+<rect x="11" y="30" width="1" height="1" fill-opacity="0.04"/>
+<rect x="12" y="30" width="1" height="1" fill-opacity="0.45"/>
+<rect x="13" y="30" width="2" height="1" fill-opacity="0.11"/>
+<rect x="16" y="30" width="1" height="1" fill-opacity="0.35"/>
+<rect x="17" y="30" width="1" height="1" fill-opacity="0.36"/>
+<rect x="19" y="30" width="1" height="1" fill-opacity="0.01"/>
+<rect x="14" y="31" width="1" height="1" fill-opacity="0.14"/>
+<rect x="15" y="31" width="1" height="1" fill-opacity="0.03"/>
+</g>
+  </symbol>
+</svg>
+
+<div class="scroll-note" id="scroll-note" aria-hidden="true">
+  <span class="scroll-note-pin"><svg viewBox="0 0 24 24"><path d="M7 12V6a4 4 0 0 1 8 0v9a2.5 2.5 0 0 1-5 0V8"/></svg></span>
+  <span class="scroll-note-text" id="scroll-note-text"></span>
+</div>
+
+<main class="page" id="page">
+  <canvas class="doodle-canvas" id="doodle-canvas" aria-hidden="true"></canvas>
+  <div class="holes" id="holes"></div>
+  <div class="margin-line" aria-hidden="true"></div>
+
+  <header class="page-head">
+    <div class="photo-cluster">
+      <div class="photo-slot photo-slot-left">
+        <button type="button" class="side-photo side-photo-left" data-key="side-left" aria-label="Reveal photo">
+          <!-- Optional real photo: drop a file named "ashiqur.png" next to
+               this HTML file to show it here. Otherwise the frame stays blank. -->
+          <img class="side-photo-img" src="ashiqur.png" alt="" draggable="false"
+               onload="this.style.display='block'; this.closest('.side-photo').classList.add('has-photo');"
+               onerror="this.style.display='none';">
+          <span class="side-photo-fallback" aria-hidden="true">
+            <svg viewBox="0 0 32 32" shape-rendering="crispEdges"><use href="#avatar-pixel"/></svg>
+          </span>
+          <span class="side-photo-liquid" aria-hidden="true"></span>
+        </button>
+        <span class="side-tape side-tape-left" aria-hidden="true"></span>
+      </div>
+
+      <div class="polaroid">
+        <div class="tape" aria-hidden="true"></div>
+        <div class="photo-frame">
+          <!-- Real photo: if a file named "ashiqur.gif" sits next to this HTML
+               file, it is shown automatically. Otherwise the sketch below is
+               shown. To use a different filename, change photoUrl in the
+               script at the bottom of this file. -->
+          <img id="profile-photo" class="profile-photo" src="ashiqur.gif" alt="ashiqur" draggable="false"
+               onload="this.style.display='block'; document.getElementById('avatar-fallback').style.display='none';"
+               onerror="this.style.display='none';"
+               oncontextmenu="return false;"
+               ondragstart="return false;">
+          <svg class="avatar avatar-pixel" id="avatar-fallback" viewBox="0 0 32 32" shape-rendering="crispEdges" role="img" aria-label="Pixel portrait placeholder">
+            <use href="#avatar-pixel"/>
+          </svg>
+        </div>
+        <p class="polaroid-caption">it's me, ashiqur!</p>
+      </div>
+
+      <div class="photo-slot photo-slot-right">
+        <button type="button" class="side-photo side-photo-right" data-key="side-right" aria-label="Reveal photo">
+          <!-- Optional real photo: drop a file named "ashiqur.jpeg" next to
+               this HTML file to show it here. Otherwise the frame stays blank. -->
+          <img class="side-photo-img" src="ashiqur.jpeg" alt="" draggable="false"
+               onload="this.style.display='block'; this.closest('.side-photo').classList.add('has-photo');"
+               onerror="this.style.display='none';">
+          <span class="side-photo-fallback" aria-hidden="true">
+            <svg viewBox="0 0 32 32" shape-rendering="crispEdges"><use href="#avatar-pixel"/></svg>
+          </span>
+          <span class="side-photo-liquid" aria-hidden="true"></span>
+        </button>
+        <span class="side-tape side-tape-right" aria-hidden="true"></span>
+      </div>
+    </div>
+
+    <h1 class="title"><a class="title-link" href="https://blog.ashiqur.in">ashiqur</a>
+      <span class="underline-doodle" aria-hidden="true">
+        <svg viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M2 8c20-10 40 8 60 0s40-10 60 0 40 8 76 -2"/></svg>
+      </span>
+    </h1>
+    <p class="subtitle">a little notebook page of everywhere I hang out online</p>
+    <p class="typed-hint">↴ tap a card to open, or copy the link</p>
+  </header>
+
+  <hr class="rule-break" aria-hidden="true">
+
+  <div id="links-root"></div>
+
+  <hr class="rule-break" aria-hidden="true">
+
+  <footer class="page-foot">
+    <p class="footnote">— last scribbled on <span id="today"></span> —</p>
+  </footer>
+</main>
+
+<!-- ============ DOODLE TOOLBAR: draw on top of the notebook page ============
+     Pen/eraser drawing lives only in memory until "Save" is tapped — that
+     tap is the only moment anything gets written to this browser's
+     storage, so a stray refresh never wipes a drawing that was already
+     saved (and never silently saves one that wasn't). -->
+<div class="doodle-dock" id="doodle-dock">
+
+  <div class="doodle-toolbar-wrap" id="doodle-toolbar-wrap">
+    <div class="doodle-options" id="doodle-options" hidden>
+      <div class="doodle-options-row">
+        <span class="doodle-label">Pen type</span>
+        <div class="doodle-pentypes">
+          <button type="button" class="doodle-pentype active" data-pentype="ballpoint">Ballpoint</button>
+          <button type="button" class="doodle-pentype" data-pentype="marker">Marker</button>
+          <button type="button" class="doodle-pentype" data-pentype="highlighter">Highlighter</button>
+        </div>
+      </div>
+      <div class="doodle-options-row">
+        <span class="doodle-label">Size</span>
+        <input type="range" id="doodle-size" min="1" max="20" step="1" value="4" aria-label="Pen size">
+      </div>
+      <div class="doodle-options-row">
+        <span class="doodle-label">Color</span>
+        <div class="doodle-colors">
+          <button type="button" class="doodle-color active" style="--c:#2c3a52" data-color="#2c3a52" aria-label="Ink blue"></button>
+          <button type="button" class="doodle-color" style="--c:#e0601e" data-color="#e0601e" aria-label="Orange"></button>
+          <button type="button" class="doodle-color" style="--c:#cf7972" data-color="#cf7972" aria-label="Margin red"></button>
+          <button type="button" class="doodle-color" style="--c:#3f7a5c" data-color="#3f7a5c" aria-label="Green"></button>
+          <button type="button" class="doodle-color" style="--c:#111111" data-color="#111111" aria-label="Black"></button>
+          <button type="button" class="doodle-color" style="--c:#ffffff" data-color="#ffffff" aria-label="White"></button>
+          <label class="doodle-color doodle-color-custom" aria-label="Custom color">
+            <input type="color" id="doodle-custom-color" value="#2c3a52">
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="doodle-panel" id="doodle-panel" role="toolbar" aria-label="Drawing tools" hidden>
+      <button type="button" class="doodle-btn" id="doodle-editmode" aria-label="Toggle drawing mode" aria-pressed="false" title="Keep drawing on even after you close this toolbar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v9"/><path d="M18.4 7.6a8 8 0 1 1-12.8 0"/></svg>
+      </button>
+      <span class="doodle-sep" aria-hidden="true"></span>
+      <button type="button" class="doodle-btn active" id="doodle-tool-pen" data-tool="pen" aria-label="Pen" aria-pressed="true">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4.2L15.8 5a2 2 0 0 1 2.8 0l.4.4a2 2 0 0 1 0 2.8L8.2 19 4 20Z"/><path d="M13.4 6.6l4 4"/></svg>
+      </button>
+      <button type="button" class="doodle-btn" id="doodle-tool-eraser" data-tool="eraser" aria-label="Eraser" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 19 3 16a1.6 1.6 0 0 1 0-2.3L13 4.3a1.6 1.6 0 0 1 2.3 0l4.4 4.4a1.6 1.6 0 0 1 0 2.3L11 19"/><path d="M6 19h13"/><path d="M9.5 8 16 14.5"/></svg>
+      </button>
+      <span class="doodle-sep" aria-hidden="true"></span>
+      <button type="button" class="doodle-btn" id="doodle-undo" aria-label="Undo" disabled>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7 3 11l4 4"/><path d="M3 11h11a6 6 0 0 1 0 12h-3"/></svg>
+      </button>
+      <button type="button" class="doodle-btn" id="doodle-redo" aria-label="Redo" disabled>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 7l4 4-4 4"/><path d="M21 11H10a6 6 0 0 0 0 12h3"/></svg>
+      </button>
+      <span class="doodle-sep" aria-hidden="true"></span>
+      <button type="button" class="doodle-btn" id="doodle-options-toggle" aria-label="Pen options" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h9M17 6h3"/><circle cx="14" cy="6" r="2"/><path d="M4 12h3M11 12h9"/><circle cx="8" cy="12" r="2"/><path d="M4 18h9M17 18h3"/><circle cx="14" cy="18" r="2"/></svg>
+      </button>
+      <button type="button" class="doodle-btn" id="doodle-clear" aria-label="Erase everything">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6 7l1 13h10l1-13"/><path d="M10 11v6M14 11v6"/></svg>
+      </button>
+      <span class="doodle-sep" aria-hidden="true"></span>
+      <button type="button" class="doodle-save" id="doodle-save">Save</button>
+    </div>
+  </div>
+
+  <button type="button" class="doodle-fab" id="doodle-fab" aria-label="Draw on this page" aria-pressed="false" aria-expanded="false">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4.2L15.8 5a2 2 0 0 1 2.8 0l.4.4a2 2 0 0 1 0 2.8L8.2 19 4 20Z"/><path d="M13.4 6.6l4 4"/></svg>
+  </button>
+
+</div>
+
+<div class="doodle-toast" id="doodle-toast" role="status" aria-live="polite"></div>
+
+<!-- Enlarged QR popup — hidden by default, filled in and shown by
+     openQrModal() whenever a card's little QR square is tapped. -->
+<div class="qr-modal-overlay" id="qr-modal-overlay" hidden>
+  <div class="qr-modal" role="dialog" aria-modal="true" aria-labelledby="qr-modal-label">
+    <span class="qr-modal-tape" aria-hidden="true"></span>
+    <button type="button" class="qr-modal-download" id="qr-modal-download" aria-label="Download this QR code as a PNG">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m-4-4l4 4 4-4"/><path d="M5 19h14"/></svg>
+    </button>
+    <button type="button" class="qr-modal-close" id="qr-modal-close" aria-label="Close">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <span class="qr-modal-qr" id="qr-modal-qr"></span>
+    <p class="qr-modal-label" id="qr-modal-label"></p>
+    <p class="qr-modal-hint">scan with your camera, or</p>
+    <p class="qr-modal-url" id="qr-modal-url"></p>
+  </div>
+</div>
+
+<!-- Tiny, dependency-free QR encoder (kazuhikoarase/qrcode-generator, MIT).
+     Used to draw a scannable QR square on every link card. -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+
+<!-- html-to-image (bubkoo/html-to-image, MIT). Used to export the enlarged
+     QR popup as a transparent PNG when the download button is tapped. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.13/html-to-image.min.js"></script>
+<script>
+/* ================================================================
+   ✏️  ADD A NEW LINK
+   Copy the block below, paste it anywhere inside the `links` array,
+   fill in the blanks, save the file. A new card appears automatically
+   under the right heading — tilt, tape colour and animation are all
+   handled for you.
+
+   {
+     label:    "Platform name",     // big handwritten word on the card
+     handle:   "@your-handle",      // small typewriter line underneath
+     url:      "https://...",       // where the card links to
+     note:     "short description", // one line about what's there
+     icon:     "pin",               // youtube, x, facebook, github,
+                                     // instagram, linkedin, play — or
+                                     // leave as "pin" for a generic doodle
+     category: "other"              // "social", "work", or "other" —
+                                     // decides which heading it sits under
+   },
+   ================================================================ */
+const links = [
+  { label:"YouTube",   handle:"@ashiqur_sf",       url:"https://www.youtube.com/@ashiqur_sf",  note:"videos & tutorials",        icon:"youtube",   category:"social" },
+  { label:"X",         handle:"@ashiqur_sf",       url:"https://twitter.com/ashiqur_sf",       note:"thoughts & threads",        icon:"x",         category:"social" },
+  { label:"Facebook",  handle:"ashiqur.sf",        url:"https://www.facebook.com/ashiqur.sf",  note:"updates & photos",          icon:"facebook",  category:"social" },
+  { label:"Instagram", handle:"ashiqur.sf",        url:"https://www.instagram.com/ashiqur.sf", note:"photos & moments",          icon:"instagram", category:"social" },
+  { label:"GitHub",    handle:"ashiiqur",          url:"https://github.com/ashiiqur",          note:"code & projects",           icon:"github",    category:"work" },
+  { label:"LinkedIn",  handle:"in/ashiiiiqur",     url:"https://www.linkedin.com/in/ashiiiiqur",note:"work & professional life", icon:"linkedin",  category:"work" },
+  { label:"Google Play", handle:"Developer profile", url:"https://play.google.com/store/apps/dev?id=7103456648156868105", note:"android apps", icon:"play", category:"work" }
+];
+
+/* section headings shown, in this order — a category only appears if it
+   has at least one link in it, so "Other" stays hidden until you use it */
+const categoryOrder  = ["social","work","other"];
+const categoryLabels = { social:"Social", work:"Work", other:"Other" };
+
+/* ---- hand-drawn platform icon doodles (add your own key if you like) ---- */
+const icons = {
+  youtube:   `<svg viewBox="0 0 48 48"><rect x="6" y="12" width="36" height="24" rx="8"/><path class="fill" d="M20 18l13 6-13 6z"/></svg>`,
+  x:         `<svg viewBox="0 0 48 48"><path d="M8 10h32a2 2 0 0 1 2 2v18a2 2 0 0 1-2 2H20l-8 8v-8H8a2 2 0 0 1-2-2V12a2 2 0 0 1 2-2z"/><path d="M17 17l14 12M31 17l-14 12"/></svg>`,
+  facebook:  `<svg viewBox="0 0 48 48"><path d="M11 24h6v16h6V24h7l1-8h-8v-4c0-2 1-3 3-3h5V2h-7c-6 0-9 4-9 10v4h-4z"/></svg>`,
+  github:    `<svg viewBox="0 0 48 48"><path d="M17 14L7 24l10 10"/><path d="M31 14l10 10-10 10"/><path d="M27 9l-6 30"/></svg>`,
+  instagram: `<svg viewBox="0 0 48 48"><rect x="7" y="12" width="34" height="26" rx="7"/><circle cx="24" cy="25" r="7.5"/><circle class="fill" cx="33.5" cy="18" r="1.6"/></svg>`,
+  linkedin:  `<svg viewBox="0 0 48 48"><rect x="8" y="18" width="32" height="20" rx="3"/><path d="M18 18v-4a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v4"/><path d="M8 27h32"/></svg>`,
+  play:      `<svg viewBox="0 0 48 48"><rect x="14" y="6" width="20" height="36" rx="4"/><path d="M20 38h8"/><path class="fill" d="M24 13l2.6 5.4 5.9.7-4.3 4.2 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.2 5.9-.7z"/></svg>`,
+  pin:       `<svg viewBox="0 0 48 48"><path d="M24 6c-7.5 0-13 5.6-13 13 0 9.7 13 23 13 23s13-13.3 13-23c0-7.4-5.5-13-13-13z"/><circle cx="24" cy="19" r="4.5"/></svg>`
+};
+
+/* small utility doodles: open-arrow and copy icon */
+const utilIcons = {
+  arrow: `<svg viewBox="0 0 32 32"><path d="M10 22L22 10"/><path d="M13 10h9v9"/></svg>`,
+  copy:  `<svg viewBox="0 0 32 32"><rect x="5" y="11" width="15" height="15" rx="3"/><rect x="12" y="6" width="15" height="15" rx="3"/></svg>`
+};
+
+const tapeColors = ["var(--tape-yellow)", "var(--tape-pink)", "var(--tape-mint)"];
+const rotations  = [-2, 1.6, -1.2, 2.1, -1.7, 1.1, -2.3, 1.9];
+const qrRotations = [-4, 3, -2.5, 4.5, -3.5, 2.5, -5, 3.5];
+
+/* Renders a URL as a small QR square, drawn as an inline SVG so it can be
+   styled with the theme's ink colour (see .card-qr in the stylesheet).
+   If the qrcode-generator library didn't load (e.g. offline), the card
+   quietly just skips the QR rather than breaking. */
+function qrSvgString(url){
+  if (typeof qrcode !== "function") return "";
+  try {
+    const qr = qrcode(0, "M");
+    qr.addData(url);
+    qr.make();
+    const n = qr.getModuleCount();
+    let rects = "";
+    for (let r = 0; r < n; r++){
+      for (let c = 0; c < n; c++){
+        if (qr.isDark(r, c)) rects += `<rect x="${c}" y="${r}" width="1" height="1" rx="0.24" ry="0.24"/>`;
+      }
+    }
+    return `<svg viewBox="0 0 ${n} ${n}" shape-rendering="crispEdges" role="img" aria-label="QR code for this link">${rects}</svg>`;
+  } catch (e) {
+    return "";
+  }
+}
+
+function buildCard(link, i){
+  const card = document.createElement("div");
+  card.className = "card";
+  card.style.setProperty("--rot", rotations[i % rotations.length] + "deg");
+  card.style.setProperty("--tape", tapeColors[i % tapeColors.length]);
+  card.style.setProperty("--delay", (i * 90) + "ms");
+  card.style.setProperty("--qr-rot", qrRotations[i % qrRotations.length] + "deg");
+
+  card.innerHTML = `
+    <span class="tape-piece" aria-hidden="true"></span>
+    <a class="card-link" href="${link.url}" target="_blank" rel="noopener noreferrer">
+      <span class="card-icon" aria-hidden="true">${icons[link.icon] || icons.pin}</span>
+      <span class="card-text">
+        <span class="card-label">${link.label}<span class="ink-underline"></span></span>
+        <span class="card-handle">${link.handle}</span>
+        <span class="card-note">${link.note}</span>
+      </span>
+      <span class="card-qr" role="button" tabindex="0" aria-label="View larger QR code for ${link.label}" title="Tap to enlarge">${qrSvgString(link.url)}</span>
+      <span class="card-arrow" aria-hidden="true">${utilIcons.arrow}</span>
+    </a>
+    <button class="copy-btn" type="button" aria-label="Copy ${link.label} link">
+      <span class="copy-icon" aria-hidden="true">${utilIcons.copy}</span>
+      <span class="copy-toast" role="status" aria-live="polite"></span>
+    </button>
+  `;
+
+  const btn = card.querySelector(".copy-btn");
+  btn.addEventListener("click", () => copyLink(link.url, btn));
+
+  /* tapping/activating the QR opens the bigger popup instead of
+     following the card's link — it sits inside the <a>, so the
+     navigation has to be stopped explicitly here. */
+  const qrEl = card.querySelector(".card-qr");
+  const tapeColor = tapeColors[i % tapeColors.length];
+  const openThisQr = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    openQrModal(link, tapeColor);
+  };
+  qrEl.addEventListener("click", openThisQr);
+  qrEl.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") openThisQr(e);
+  });
+
+  return card;
+}
+
+function fallbackCopy(text){
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand("copy"); } catch (e) { /* ignore */ }
+  document.body.removeChild(ta);
+}
+
+function copyLink(url, btn){
+  const toast = btn.querySelector(".copy-toast");
+  const announce = () => {
+    toast.textContent = "✓ copied!";
+    toast.classList.add("show");
+    btn.classList.add("just-copied");
+    clearTimeout(btn._toastTimer);
+    btn._toastTimer = setTimeout(() => {
+      toast.classList.remove("show");
+      btn.classList.remove("just-copied");
+    }, 1600);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(announce).catch(() => { fallbackCopy(url); announce(); });
+  } else {
+    fallbackCopy(url);
+    announce();
+  }
+}
+
+/* ---- QR enlarge modal ---- */
+const qrModalOverlay  = document.getElementById("qr-modal-overlay");
+const qrModalCard     = document.querySelector(".qr-modal");
+const qrModalQr       = document.getElementById("qr-modal-qr");
+const qrModalLabel    = document.getElementById("qr-modal-label");
+const qrModalUrl      = document.getElementById("qr-modal-url");
+const qrModalClose    = document.getElementById("qr-modal-close");
+const qrModalDownload = document.getElementById("qr-modal-download");
+let qrModalLastFocused = null;
+/* Tracks whether we've pushed a history entry for the open modal, so the
+   device/browser back button closes the popup instead of navigating away
+   from the page. */
+let qrModalHistoryPushed = false;
+
+function openQrModal(link, tapeColor){
+  if (!qrModalOverlay || !qrModalQr) return;
+  qrModalQr.innerHTML = qrSvgString(link.url);
+  qrModalQr.style.background = tapeColor || "var(--paper)";
+  qrModalLabel.textContent = link.label;
+  qrModalUrl.textContent = link.url;
+
+  qrModalLastFocused = document.activeElement;
+  qrModalOverlay.hidden = false;
+  document.body.style.overflow = "hidden";
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    qrModalOverlay.classList.add("open");
+  }));
+  qrModalClose.focus();
+
+  /* Push a dummy history entry so a back-button/gesture press while the
+     popup is open just pops this entry (closing the popup) instead of
+     leaving the page. */
+  history.pushState({ qrModal: true }, "");
+  qrModalHistoryPushed = true;
+}
+
+/* fromPopState is true when this was triggered by the back button (via the
+   popstate listener below) — in that case the history entry is already
+   being consumed by the browser, so we must NOT call history.back() again. */
+function closeQrModal(fromPopState){
+  if (!qrModalOverlay || !qrModalOverlay.classList.contains("open")) return;
+  qrModalOverlay.classList.remove("open");
+  document.body.style.overflow = "";
+  setTimeout(() => { qrModalOverlay.hidden = true; }, 220);
+  if (qrModalLastFocused && typeof qrModalLastFocused.focus === "function") qrModalLastFocused.focus();
+
+  if (qrModalHistoryPushed) {
+    qrModalHistoryPushed = false;
+    if (!fromPopState) history.back();
+  }
+}
+
+/* Back button / gesture while the popup is open: close the popup instead
+   of navigating to the previous page. */
+window.addEventListener("popstate", () => {
+  if (qrModalOverlay && qrModalOverlay.classList.contains("open")) {
+    closeQrModal(true);
+  }
+});
+
+/* ---- QR popup download: render the card to a transparent PNG ----
+   Uses html-to-image to snapshot the whole popup (tape, QR, label,
+   hint, URL) exactly as it looks on screen, skipping the close/download
+   buttons themselves, and hands the browser a PNG with no page
+   background baked in. */
+async function downloadQrModal(){
+  if (!qrModalCard) return;
+  if (typeof htmlToImage === "undefined") {
+    console.error("html-to-image failed to load — check your connection.");
+    return;
+  }
+  qrModalDownload.classList.add("is-busy");
+  try {
+    const dataUrl = await htmlToImage.toPng(qrModalCard, {
+      pixelRatio: 3,
+      cacheBust: true,
+      filter: (node) => {
+        if (!node.classList) return true;
+        return !node.classList.contains("qr-modal-close") && !node.classList.contains("qr-modal-download");
+      }
+    });
+    const rawName  = (qrModalLabel && qrModalLabel.textContent) ? qrModalLabel.textContent : "qr-code";
+    const safeName = rawName.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "qr-code";
+    const a = document.createElement("a");
+    a.href = dataUrl;
+    a.download = `${safeName}-qr.png`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  } catch (err) {
+    console.error("QR download failed:", err);
+  } finally {
+    qrModalDownload.classList.remove("is-busy");
+  }
+}
+
+if (qrModalOverlay){
+  qrModalOverlay.addEventListener("click", (e) => {
+    if (e.target === qrModalOverlay) closeQrModal();
+  });
+}
+if (qrModalClose) qrModalClose.addEventListener("click", closeQrModal);
+if (qrModalDownload) qrModalDownload.addEventListener("click", downloadQrModal);
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeQrModal();
+});
+
+/* build the grouped sections */
+const root = document.getElementById("links-root");
+categoryOrder.forEach(cat => {
+  const items = links.filter(l => (l.category || "other") === cat);
+  if (items.length === 0) return;
+
+  const section = document.createElement("section");
+  section.className = "link-group";
+  section.setAttribute("aria-label", categoryLabels[cat]);
+  section.innerHTML = `<h2 class="section-heading"><span class="star" aria-hidden="true">✦</span>${categoryLabels[cat]}</h2>`;
+
+  const grid = document.createElement("div");
+  grid.className = "links-grid";
+  items.forEach(link => grid.appendChild(buildCard(link, links.indexOf(link))));
+  section.appendChild(grid);
+
+  root.appendChild(section);
+});
+
+/* spiral holes — count adapts, spacing handled by flexbox */
+const holesEl = document.getElementById("holes");
+for (let i = 0; i < 16; i++) {
+  const h = document.createElement("span");
+  h.className = "hole";
+  holesEl.appendChild(h);
+}
+
+/* today's date, footer */
+document.getElementById("today").textContent = new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+
+/* draw-on animation for every platform icon, if the browser supports it */
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+document.querySelectorAll(".card-icon svg").forEach((svg, i) => {
+  const shapes = svg.querySelectorAll("path, circle, rect");
+  shapes.forEach((el) => {
+    if (el.classList.contains("fill")) return;
+    if (typeof el.getTotalLength !== "function") return;
+    try {
+      const len = el.getTotalLength();
+      el.style.strokeDasharray = len;
+      el.style.strokeDashoffset = reduceMotion ? 0 : len;
+      if (!reduceMotion) {
+        el.style.transition = `stroke-dashoffset .7s ease ${(i * 90) + 250}ms`;
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          el.style.strokeDashoffset = 0;
+        }));
+      }
+    } catch (e) { /* skip silently if unsupported */ }
+  });
+});
+
+/* ---- scroll position note (hand-drawn, theme-matched) ----
+   Shows a little taped sticky-note next to the scrollbar while
+   scrolling, naming the section currently in view, then fades
+   away shortly after scrolling stops. */
+(function(){
+  const note = document.getElementById("scroll-note");
+  const noteText = document.getElementById("scroll-note-text");
+  if (!note || !noteText) return;
+
+  const sections = Array.from(document.querySelectorAll(".link-group"));
+  let hideTimer;
+
+  function percentScrolled(){
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - doc.clientHeight;
+    return max > 0 ? window.scrollY / max : 0;
+  }
+
+  /* moves the note up/down the right edge in step with the scrollbar */
+  function positionNote(percent){
+    const vh = window.innerHeight;
+    const edgeMargin = 46;
+    const top = edgeMargin + percent * (vh - edgeMargin * 2);
+    note.style.top = top + "px";
+  }
+
+  function labelForPercent(percent){
+    if (percent < 0.04) return "Top ↑";
+    if (percent > 0.96) return "That's all ✓";
+
+    const lookLine = window.innerHeight * 0.4;
+    let current = null;
+    for (const sec of sections) {
+      if (sec.getBoundingClientRect().top <= lookLine) current = sec;
+    }
+    return current ? current.getAttribute("aria-label") : "Scrolling…";
+  }
+
+  function updateNote(){
+    const percent = percentScrolled();
+    positionNote(percent);
+    noteText.textContent = labelForPercent(percent);
+    note.classList.add("visible");
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => note.classList.remove("visible"), 850);
+  }
+
+  positionNote(percentScrolled());
+  window.addEventListener("scroll", updateNote, { passive:true });
+  window.addEventListener("resize", () => positionNote(percentScrolled()), { passive:true });
+})();
+
+/* ---- side photos: blurred until tapped, remembered per browser ---- */
+(function(){
+  const STORAGE_PREFIX = "sidePhotoRevealed:";
+  const buttons = document.querySelectorAll(".side-photo[data-key]");
+
+  // once a photo is revealed, lock the button down: no more clicking,
+  // no keyboard/tab activation, no right-click "copy image" menu.
+  function lockDown(btn){
+    btn.classList.add("revealed");
+    btn.disabled = true;
+    btn.setAttribute("aria-disabled", "true");
+  }
+
+  buttons.forEach((btn) => {
+    const key = btn.getAttribute("data-key");
+    const img = btn.querySelector(".side-photo-img");
+
+    // always block drag-out and the right-click context menu on these
+    // photos (covers "drag to copy" and "copy image url" at any state)
+    btn.addEventListener("contextmenu", (e) => e.preventDefault());
+    if (img) {
+      img.setAttribute("draggable", "false");
+      img.addEventListener("dragstart", (e) => e.preventDefault());
+    }
+
+    try {
+      if (localStorage.getItem(STORAGE_PREFIX + key) === "1") {
+        lockDown(btn);
+      }
+    } catch (e) { /* localStorage unavailable (e.g. private mode) — stays blurred */ }
+
+    btn.addEventListener("click", () => {
+      lockDown(btn);
+      try { localStorage.setItem(STORAGE_PREFIX + key, "1"); } catch (e) { /* ignore */ }
+    });
+  });
+})();
+
+/* ---- doodle layer: freehand pen/eraser drawing over the page ----
+   Everything drawn lives only in memory until "Save" is tapped; that tap
+   is the only moment anything is written to localStorage, so refreshing
+   mid-doodle never overwrites a drawing that was saved earlier, and never
+   silently saves one that wasn't. Strokes are stored as points relative
+   (0–1) to the page's own width/height rather than raw pixels, so a
+   drawing stays lined up correctly if the page is measured again at a
+   different size (resize, orientation change, content reflow). */
+(function(){
+  const pageEl = document.getElementById("page");
+  const canvas = document.getElementById("doodle-canvas");
+  if (!pageEl || !canvas) return;
+  const ctx = canvas.getContext("2d");
+
+  const STORAGE_KEY = "notebookDoodles:v1";
+  const ERASER_MULT = 3;
+  const PEN_TYPES = {
+    ballpoint:   { sizeMult:1,   alpha:1,   composite:"source-over", cap:"round"  },
+    marker:      { sizeMult:2.2, alpha:1,   composite:"source-over", cap:"round"  },
+    highlighter: { sizeMult:3.4, alpha:.35, composite:"multiply",    cap:"square" }
+  };
+
+  let strokes = [];
+  let redoStack = [];
+  let current = null;
+  let drawing = false;
+  let drawMode = false;
+  let activeTool = "pen";
+  let penType = "ballpoint";
+  let penColor = "#2c3a52";
+  let penSize = 4;
+
+  const fab             = document.getElementById("doodle-fab");
+  const panel           = document.getElementById("doodle-panel");
+  const optionsPanel    = document.getElementById("doodle-options");
+  const optionsToggle   = document.getElementById("doodle-options-toggle");
+  const toolPenBtn      = document.getElementById("doodle-tool-pen");
+  const toolEraserBtn   = document.getElementById("doodle-tool-eraser");
+  const undoBtn         = document.getElementById("doodle-undo");
+  const redoBtn         = document.getElementById("doodle-redo");
+  const clearBtn        = document.getElementById("doodle-clear");
+  const editModeBtn     = document.getElementById("doodle-editmode");
+  const saveBtn         = document.getElementById("doodle-save");
+  const sizeSlider      = document.getElementById("doodle-size");
+  const customColorInput= document.getElementById("doodle-custom-color");
+  const toast           = document.getElementById("doodle-toast");
+
+  /* ---------- persistence: only touched by loadStrokes() on page load
+     and saveStrokes() on a Save click — never on every stroke ---------- */
+  function loadStrokes(){
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) strokes = JSON.parse(raw) || [];
+    } catch (e) { strokes = []; }
+  }
+
+  let toastTimer;
+  function showToast(msg){
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("show"), 1800);
+  }
+
+  function markDirty(isDirty){
+    if (saveBtn) saveBtn.classList.toggle("unsaved", isDirty);
+  }
+
+  function saveStrokes(){
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(strokes));
+      markDirty(false);
+      showToast("Saved to this browser ✓");
+    } catch (e) {
+      showToast("Couldn't save — storage full or blocked");
+    }
+  }
+
+  /* ---------- canvas sizing & full redraw ---------- */
+  function toPx(pt){
+    return { x: pt.x * canvas.clientWidth, y: pt.y * canvas.clientHeight };
+  }
+  function applyStyle(stroke){
+    ctx.globalCompositeOperation = stroke.composite;
+    ctx.globalAlpha = stroke.alpha;
+    ctx.strokeStyle = stroke.color;
+    ctx.lineWidth = stroke.size;
+    ctx.lineCap = stroke.cap;
+    ctx.lineJoin = "round";
+  }
+  function resetStyle(){
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = "source-over";
+  }
+
+  function drawFullStroke(stroke){
+    const pts = stroke.points;
+    if (pts.length < 2) return;
+    applyStyle(stroke);
+    ctx.beginPath();
+    const p0 = toPx(pts[0]);
+    ctx.moveTo(p0.x, p0.y);
+    if (pts.length === 2){
+      const p1 = toPx(pts[1]);
+      ctx.lineTo(p1.x, p1.y);
+    } else {
+      for (let i = 1; i < pts.length - 1; i++){
+        const curr = toPx(pts[i]);
+        const next = toPx(pts[i+1]);
+        const mid = { x:(curr.x+next.x)/2, y:(curr.y+next.y)/2 };
+        ctx.quadraticCurveTo(curr.x, curr.y, mid.x, mid.y);
+      }
+      const last = toPx(pts[pts.length-1]);
+      ctx.lineTo(last.x, last.y);
+    }
+    ctx.stroke();
+    resetStyle();
+  }
+
+  function redrawAll(){
+    ctx.save();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.restore();
+    strokes.forEach(drawFullStroke);
+  }
+
+  /* draws only the first `count` points of a stroke — same path-building
+     logic as drawFullStroke, just truncated, so a stroke can be painted
+     partway through mid-animation */
+  function drawPartialStroke(stroke, count){
+    const pts = stroke.points.slice(0, count);
+    if (pts.length < 2) return;
+    applyStyle(stroke);
+    ctx.beginPath();
+    const p0 = toPx(pts[0]);
+    ctx.moveTo(p0.x, p0.y);
+    if (pts.length === 2){
+      const p1 = toPx(pts[1]);
+      ctx.lineTo(p1.x, p1.y);
+    } else {
+      for (let i = 1; i < pts.length - 1; i++){
+        const curr = toPx(pts[i]);
+        const next = toPx(pts[i+1]);
+        const mid = { x:(curr.x+next.x)/2, y:(curr.y+next.y)/2 };
+        ctx.quadraticCurveTo(curr.x, curr.y, mid.x, mid.y);
+      }
+      const last = toPx(pts[pts.length-1]);
+      ctx.lineTo(last.x, last.y);
+    }
+    ctx.stroke();
+    resetStyle();
+  }
+
+  /* Replays a saved set of strokes onto the (already-cleared, already
+     visible) canvas over time, as if it were being hand-drawn live —
+     used on load to reveal a saved doodle instead of fading it in already
+     finished. Paces itself by total point count across all strokes, so a
+     bigger drawing takes proportionally longer, clamped to a sane range. */
+  function animateDrawIn(strokesToPlay){
+    const totalPoints = strokesToPlay.reduce((sum, s) => sum + s.points.length, 0);
+    if (totalPoints === 0) return;
+    const duration = Math.min(2200, Math.max(900, totalPoints * 5));
+    const start = performance.now();
+
+    function frame(now){
+      const progress = Math.min(1, (now - start) / duration);
+      let pointBudget = Math.floor(progress * totalPoints);
+
+      ctx.save();
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.restore();
+
+      for (const stroke of strokesToPlay){
+        if (pointBudget <= 0) break;
+        const n = Math.min(stroke.points.length, pointBudget);
+        drawPartialStroke(stroke, n);
+        pointBudget -= stroke.points.length;
+      }
+
+      if (progress < 1){
+        requestAnimationFrame(frame);
+      } else {
+        redrawAll(); // guarantees the exact final state, no rounding gaps
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function resizeCanvas(){
+    const dpr = window.devicePixelRatio || 1;
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+    if (!w || !h) return;
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    redrawAll();
+  }
+
+  /* redraw whenever the page's own box changes size — strokes are stored
+     as fractions of the page, so they land back in the right spot rather
+     than stretching or drifting out of place */
+  let resizeQueued = false;
+  const ro = new ResizeObserver(() => {
+    if (resizeQueued) return;
+    resizeQueued = true;
+    requestAnimationFrame(() => { resizeQueued = false; resizeCanvas(); });
+  });
+  ro.observe(pageEl);
+
+  /* ---------- live stroke drawing ---------- */
+  function getPoint(evt){
+    return { x: evt.offsetX / canvas.clientWidth, y: evt.offsetY / canvas.clientHeight };
+  }
+
+  function presetForPointer(){
+    if (activeTool === "eraser"){
+      return { color:"#000000", size: penSize * ERASER_MULT, alpha:1, composite:"destination-out", cap:"round" };
+    }
+    const t = PEN_TYPES[penType] || PEN_TYPES.ballpoint;
+    return { color: penColor, size: penSize * t.sizeMult, alpha: t.alpha, composite: t.composite, cap: t.cap };
+  }
+
+  function drawLiveSegment(){
+    const pts = current.points;
+    const n = pts.length;
+    if (n < 2) return;
+    applyStyle(current);
+    ctx.beginPath();
+    if (n === 2){
+      const p0 = toPx(pts[0]), p1 = toPx(pts[1]);
+      ctx.moveTo(p0.x, p0.y);
+      ctx.lineTo(p1.x, p1.y);
+    } else {
+      const p0 = toPx(pts[n-3]), p1 = toPx(pts[n-2]), p2 = toPx(pts[n-1]);
+      const mid1 = { x:(p0.x+p1.x)/2, y:(p0.y+p1.y)/2 };
+      const mid2 = { x:(p1.x+p2.x)/2, y:(p1.y+p2.y)/2 };
+      ctx.moveTo(mid1.x, mid1.y);
+      ctx.quadraticCurveTo(p1.x, p1.y, mid2.x, mid2.y);
+    }
+    ctx.stroke();
+    resetStyle();
+  }
+
+  canvas.addEventListener("pointerdown", (e) => {
+    if (!drawMode) return;
+    e.preventDefault();
+    try { canvas.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
+    drawing = true;
+    current = Object.assign({ tool: activeTool, points: [getPoint(e)] }, presetForPointer());
+    redoStack = [];
+    updateHistoryButtons();
+  });
+
+  canvas.addEventListener("pointermove", (e) => {
+    if (!drawing || !current) return;
+    e.preventDefault();
+    current.points.push(getPoint(e));
+    drawLiveSegment();
+  });
+
+  function endStroke(){
+    if (!drawing) return;
+    drawing = false;
+    if (current && current.points.length > 1){
+      strokes.push(current);
+      markDirty(true);
+    }
+    current = null;
+    updateHistoryButtons();
+  }
+  canvas.addEventListener("pointerup", endStroke);
+  canvas.addEventListener("pointercancel", endStroke);
+  canvas.addEventListener("pointerleave", endStroke);
+
+  /* ---------- undo / redo / clear ---------- */
+  function updateHistoryButtons(){
+    if (undoBtn) undoBtn.disabled = !drawMode || strokes.length === 0;
+    if (redoBtn) redoBtn.disabled = !drawMode || redoStack.length === 0;
+  }
+  function undo(){
+    if (!strokes.length) return;
+    redoStack.push(strokes.pop());
+    markDirty(true);
+    redrawAll();
+    updateHistoryButtons();
+  }
+  function redo(){
+    if (!redoStack.length) return;
+    strokes.push(redoStack.pop());
+    markDirty(true);
+    redrawAll();
+    updateHistoryButtons();
+  }
+  function clearAll(){
+    if (!strokes.length) return;
+    /* Keep every erased stroke on the redo stack, in the order it needs
+       to come back in, so Erase All can be undone one Redo tap at a
+       time — right up until Save makes the erase permanent. */
+    redoStack = strokes.slice().reverse();
+    strokes = [];
+    /* Erasing behaves exactly like drawing a stroke or hitting Undo: it
+       only updates the canvas and marks the Save button as having
+       unsaved changes — it does NOT write to storage on its own. Tap
+       Save afterward to make the erase permanent. */
+    markDirty(true);
+    redrawAll();
+    updateHistoryButtons();
+  }
+
+  /* ---------- toolbar wiring ---------- */
+  function setTool(tool){
+    activeTool = tool;
+    if (toolPenBtn){
+      toolPenBtn.classList.toggle("active", tool === "pen");
+      toolPenBtn.setAttribute("aria-pressed", String(tool === "pen"));
+    }
+    if (toolEraserBtn){
+      toolEraserBtn.classList.toggle("active", tool === "eraser");
+      toolEraserBtn.setAttribute("aria-pressed", String(tool === "eraser"));
+    }
+  }
+  if (toolPenBtn) toolPenBtn.addEventListener("click", () => setTool("pen"));
+  if (toolEraserBtn) toolEraserBtn.addEventListener("click", () => setTool("eraser"));
+
+  if (undoBtn) undoBtn.addEventListener("click", undo);
+  if (redoBtn) redoBtn.addEventListener("click", redo);
+  if (clearBtn) clearBtn.addEventListener("click", clearAll);
+  if (saveBtn) saveBtn.addEventListener("click", saveStrokes);
+
+  if (optionsToggle){
+    optionsToggle.addEventListener("click", () => {
+      const willShow = optionsPanel.hidden;
+      optionsPanel.hidden = !willShow;
+      optionsToggle.setAttribute("aria-expanded", String(willShow));
+    });
+  }
+
+  document.querySelectorAll(".doodle-pentype").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      penType = btn.dataset.pentype;
+      document.querySelectorAll(".doodle-pentype").forEach((b) => b.classList.toggle("active", b === btn));
+    });
+  });
+
+  if (sizeSlider){
+    penSize = Number(sizeSlider.value) || penSize;
+    sizeSlider.addEventListener("input", (e) => { penSize = Number(e.target.value); });
+  }
+
+  document.querySelectorAll(".doodle-color[data-color]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      penColor = btn.dataset.color;
+      document.querySelectorAll(".doodle-color").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
+  });
+  if (customColorInput){
+    customColorInput.addEventListener("input", (e) => {
+      penColor = e.target.value;
+      document.querySelectorAll(".doodle-color[data-color]").forEach((b) => b.classList.remove("active"));
+    });
+  }
+
+  /* Edit mode (can the canvas actually be drawn on) is now independent of
+     whether the toolbar panel is visible — this button is the one source
+     of truth for it, so drawing can keep going after the toolbar closes.
+     Every other toolbar control is also locked (greyed out, inert) until
+     edit mode is switched on. */
+  const lockableEls = [
+    toolPenBtn, toolEraserBtn, optionsToggle, clearBtn, saveBtn,
+    ...document.querySelectorAll(".doodle-pentype"),
+    sizeSlider,
+    ...document.querySelectorAll(".doodle-color[data-color]"),
+    customColorInput
+  ].filter(Boolean);
+
+  function updateToolbarLock(){
+    const locked = !drawMode;
+    if (panel) panel.classList.toggle("locked", locked);
+    if (optionsPanel) optionsPanel.classList.toggle("locked", locked);
+    lockableEls.forEach((el) => { el.disabled = locked; });
+    updateHistoryButtons();
+  }
+
+  function setEditMode(on){
+    drawMode = on;
+    if (editModeBtn){
+      editModeBtn.classList.toggle("active", drawMode);
+      editModeBtn.setAttribute("aria-pressed", String(drawMode));
+    }
+    if (fab){
+      fab.classList.toggle("active", drawMode);
+      fab.setAttribute("aria-pressed", String(drawMode));
+    }
+    canvas.classList.toggle("drawing-active", drawMode);
+    updateToolbarLock();
+  }
+  if (editModeBtn){
+    editModeBtn.addEventListener("click", () => setEditMode(!drawMode));
+  }
+
+  if (fab){
+    fab.addEventListener("click", () => {
+      const opening = !!panel && panel.hidden;
+      if (panel) panel.hidden = !opening;
+      fab.setAttribute("aria-expanded", String(opening));
+      if (!opening){
+        /* Closing the toolbar only hides the toolbar itself — draw mode
+           is left exactly as the toggle button set it (untouched here),
+           so drawing can carry on with the toolbar tucked away. Also
+           tuck away the pen-options sub-panel. */
+        if (optionsPanel) optionsPanel.hidden = true;
+      }
+      /* Opening the toolbar does NOT turn draw mode on — it stays off
+         by default until you explicitly tap the edit-mode toggle. */
+    });
+  }
+
+  /* ---------- init: load whatever was last saved, then size the
+     canvas once layout (fonts, images, the dynamically-built link
+     grid) has settled ---------- */
+  loadStrokes();
+  updateToolbarLock();
+  markDirty(false);
+
+  /* if there's a saved drawing to show, keep it invisible (but already
+     sized and painted, so it's instantly ready) until the whole page —
+     images, fonts, everything — has actually finished loading, AND the
+     page's own entrance animations (the notebook "settle" tilt-in and
+     the staggered card-in fly-ins) have finished playing, then fade it
+     in rather than having it pop in already-drawn while the rest of the
+     page is still animating on top of it. */
+  const hasSavedDrawing = strokes.length > 0;
+
+  requestAnimationFrame(() => requestAnimationFrame(resizeCanvas));
+
+  if (hasSavedDrawing){
+    const prefersReducedMotion = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* Resolves once a given element's named CSS animation has finished.
+       Falls back to a timeout so the doodle can never get stuck hidden —
+       covers reduced-motion (animation:none, so no event ever fires),
+       an element that doesn't exist, or any other edge case where
+       "animationend" just doesn't arrive. */
+    function whenAnimationEnds(el, animationName, fallbackMs){
+      return new Promise((resolve) => {
+        if (!el || prefersReducedMotion){ resolve(); return; }
+        let done = false;
+        const finish = () => {
+          if (done) return;
+          done = true;
+          el.removeEventListener("animationend", onEnd);
+          resolve();
+        };
+        const onEnd = (e) => { if (e.animationName === animationName) finish(); };
+        el.addEventListener("animationend", onEnd);
+        window.setTimeout(finish, fallbackMs);
+      });
+    }
+
+    /* Waits for the notebook page's "settle" animation (.7s, no delay)
+       and for the LAST card's "card-in" animation to finish — cards are
+       staggered by (index * 90ms), so whichever card has the biggest
+       --delay is the one that finishes last, regardless of DOM order. */
+    function siteEntranceDonePromise(){
+      const pageDone = whenAnimationEnds(document.querySelector(".page"), "settle", 900);
+
+      let maxDelay = 0, lastCard = null;
+      document.querySelectorAll(".card").forEach((c) => {
+        const ms = parseFloat(c.style.getPropertyValue("--delay")) || 0;
+        if (ms >= maxDelay){ maxDelay = ms; lastCard = c; }
+      });
+      const cardsDone = whenAnimationEnds(lastCard, "card-in", maxDelay + 700);
+
+      return Promise.all([pageDone, cardsDone]);
+    }
+
+    const windowLoadPromise = document.readyState === "complete"
+      ? Promise.resolve()
+      : new Promise((resolve) => window.addEventListener("load", resolve, { once:true }));
+
+    Promise.all([windowLoadPromise, siteEntranceDonePromise()]).then(() => {
+      resizeCanvas(); // layout may have shifted further while loading
+      window.setTimeout(() => {
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          if (prefersReducedMotion){
+            /* respect reduced motion: just show the finished drawing,
+               no fade and no stroke-by-stroke replay */
+            canvas.classList.add("doodle-revealed");
+            return;
+          }
+          /* clear what resizeCanvas() just painted, reveal the (now
+             blank) canvas instantly, then replay every saved stroke on
+             top of it so the drawing appears to draw itself in, pen
+             stroke by pen stroke, instead of fading in already-done */
+          ctx.save();
+          ctx.setTransform(1, 0, 0, 1, 0, 0);
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.restore();
+          canvas.classList.add("doodle-revealed");
+          animateDrawIn(strokes);
+        }));
+      }, 500);
+    });
+  } else {
+    /* nothing saved to fade in — just make the (currently empty) canvas
+       usable right away so live drawing isn't blocked behind opacity:0 */
+    canvas.classList.add("doodle-revealed");
+  }
+})();
+
+/* ---- draggable doodle button: the FAB (and the toolbar it opens) can be
+   dragged anywhere on screen. The very first time anyone opens the page
+   it sits in its normal spot (bottom-center, set by CSS) — only once it's
+   been dragged does a custom position get remembered, per browser, as a
+   fraction of the viewport so it still lands somewhere sensible after a
+   resize or orientation change. The dock is sized to exactly match the
+   button (see CSS), and the toolbar lives in its own separately-anchored
+   wrapper, centered on the button whenever there's room.
+
+   Keeping the open toolbar on-screen: the BUTTON never moves to make room
+   for the toolbar — it stays exactly where it was dropped. Instead, when
+   the toolbar (or the pen-options sub-panel) would be cut off — because
+   the button is sitting near a screen edge — the TOOLBAR itself is
+   nudged sideways (and/or vertically) just far enough to stay fully
+   visible, while remaining anchored to the button. No animation, no
+   resizing — it simply sticks to the nearest position that keeps it
+   on-screen. See positionToolbarWrap. ---- */
+(function(){
+  const dock        = document.getElementById("doodle-dock");
+  const fab          = document.getElementById("doodle-fab");
+  const wrap         = document.getElementById("doodle-toolbar-wrap");
+  const panel        = document.getElementById("doodle-panel");
+  const optionsPanel = document.getElementById("doodle-options");
+  if (!dock || !fab) return;
+
+  const STORAGE_KEY   = "doodleDockPos:v1";
+  const DRAG_THRESHOLD = 6;   // px of movement before a tap counts as a drag
+  const MARGIN         = 18;  // keep the button at least this far from any edge — its own visible border-zone it can't be dragged past
+
+  let dragging  = false;
+  let moved     = false;
+  let pointerId = null;
+  let startX = 0, startY = 0, startLeft = 0, startTop = 0;
+
+  function clamp(val, min, max){ return Math.min(Math.max(val, min), max); }
+
+  function applyPosition(left, top){
+    const w = dock.offsetWidth  || 52;
+    const h = dock.offsetHeight || 52;
+    const maxLeft = Math.max(MARGIN, window.innerWidth  - w - MARGIN);
+    const maxTop  = Math.max(MARGIN, window.innerHeight - h - MARGIN);
+    left = clamp(left, MARGIN, maxLeft);
+    top  = clamp(top, MARGIN, maxTop);
+    dock.style.left = left + "px";
+    dock.style.top = top + "px";
+    dock.style.bottom = "auto";
+    dock.style.transform = "none";
+    return { left, top };
+  }
+
+  function savePosition(left, top){
+    try {
+      const fx = (left + dock.offsetWidth  / 2) / window.innerWidth;
+      const fy = (top  + dock.offsetHeight / 2) / window.innerHeight;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ fx, fy }));
+    } catch (e) { /* ignore — position just won't be remembered */ }
+  }
+
+  function restorePosition(){
+    let saved = null;
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) saved = JSON.parse(raw);
+    } catch (e) { /* ignore */ }
+    if (!saved || typeof saved.fx !== "number" || typeof saved.fy !== "number") return;
+    requestAnimationFrame(() => {
+      const left = saved.fx * window.innerWidth  - dock.offsetWidth  / 2;
+      const top  = saved.fy * window.innerHeight - dock.offsetHeight / 2;
+      applyPosition(left, top);
+      updateFlip();
+    });
+  }
+
+  /* Positions the toolbar wrapper relative to the button: centered
+     horizontally on it by default, but nudged left/right (via `left`) and,
+     separately, up/down (via a `translateY` transform) just enough to keep
+     it fully on-screen when the button is sitting close to an edge. The
+     button's own position is never touched here — only the toolbar moves.
+     Runs whenever the toolbar opens/closes, whenever the pen-options
+     sub-panel changes the toolbar's size, and while the button is being
+     dragged with the toolbar open. */
+  function positionToolbarWrap(){
+    const toolbarOpen = panel && !panel.hidden;
+    const optionsOpen = optionsPanel && !optionsPanel.hidden;
+    if (!toolbarOpen && !optionsOpen){
+      wrap.style.left = "";
+      wrap.style.transform = "";
+      return;
+    }
+
+    const dockRect = dock.getBoundingClientRect();
+    const wrapWidth = wrap.offsetWidth;
+
+    // default: dead-centered on the button
+    let left = (dockRect.width - wrapWidth) / 2;
+    const pageLeft  = dockRect.left + left;
+    const pageRight = pageLeft + wrapWidth;
+    if (pageLeft < MARGIN) left += (MARGIN - pageLeft);
+    else if (pageRight > window.innerWidth - MARGIN) left -= (pageRight - (window.innerWidth - MARGIN));
+    wrap.style.left = left + "px";
+
+    // vertical: measure where it actually landed (after the flip-up/down
+    // rule + the left shift above) and nudge with translateY if it's still
+    // poking off the top or bottom edge
+    const rect = wrap.getBoundingClientRect();
+    let dy = 0;
+    if (rect.top < MARGIN) dy = MARGIN - rect.top;
+    else if (rect.bottom > window.innerHeight - MARGIN) dy = (window.innerHeight - MARGIN) - rect.bottom;
+    wrap.style.transform = dy !== 0 ? `translateY(${dy}px)` : "";
+  }
+
+  /* if the button ends up near the top of the screen, the toolbar (which
+     opens upward, above the button) may not have room to fit — flip it to
+     open downward instead so it's never cut off or pushed off-screen */
+  function updateFlip(){
+    if (!wrap) return;
+    const toolbarOpen  = panel && !panel.hidden;
+    const optionsOpen  = optionsPanel && !optionsPanel.hidden;
+    if (!toolbarOpen && !optionsOpen){
+      positionToolbarWrap();
+      return;
+    }
+    requestAnimationFrame(() => {
+      const dockRect  = dock.getBoundingClientRect();
+      const wrapHeight = wrap.getBoundingClientRect().height;
+      const gap = 10;
+      wrap.classList.toggle("flip-down", wrapHeight + gap > dockRect.top);
+      requestAnimationFrame(positionToolbarWrap);
+    });
+  }
+  const visibilityObserver = new MutationObserver(updateFlip);
+  if (panel) visibilityObserver.observe(panel, { attributes:true, attributeFilter:["hidden"] });
+  if (optionsPanel) visibilityObserver.observe(optionsPanel, { attributes:true, attributeFilter:["hidden"] });
+
+  fab.addEventListener("pointerdown", (e) => {
+    if (e.button !== undefined && e.button !== 0) return;
+    dragging = true;
+    moved = false;
+    pointerId = e.pointerId;
+    const rect = dock.getBoundingClientRect();
+    startLeft = rect.left;
+    startTop  = rect.top;
+    startX = e.clientX;
+    startY = e.clientY;
+    try { fab.setPointerCapture(pointerId); } catch (err) { /* ignore */ }
+  });
+
+  fab.addEventListener("pointermove", (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    if (!moved && Math.hypot(dx, dy) > DRAG_THRESHOLD){
+      moved = true;
+      dock.classList.add("dragging");
+      fab.classList.add("dragging");
+    }
+    if (!moved) return;
+    e.preventDefault();
+    applyPosition(startLeft + dx, startTop + dy);
+    // keep the toolbar glued to (and fully on-screen relative to) the
+    // button in real time, in case it's open while being dragged
+    positionToolbarWrap();
+  });
+
+  function endDrag(){
+    if (!dragging) return;
+    dragging = false;
+    try { if (pointerId !== null) fab.releasePointerCapture(pointerId); } catch (err) { /* ignore */ }
+    dock.classList.remove("dragging");
+    fab.classList.remove("dragging");
+    if (moved){
+      const rect = dock.getBoundingClientRect();
+      savePosition(rect.left, rect.top);
+      updateFlip();
+    }
+  }
+  fab.addEventListener("pointerup", endDrag);
+  fab.addEventListener("pointercancel", endDrag);
+
+  /* a drag ends with a click event right after pointerup — swallow that
+     one click so dropping the button doesn't also toggle the toolbar */
+  fab.addEventListener("click", (e) => {
+    if (moved){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      moved = false;
+    }
+  }, true);
+
+  window.addEventListener("resize", () => { restorePosition(); updateFlip(); }, { passive:true });
+
+  restorePosition();
+})();
+</script>
+</body>
+</html>
