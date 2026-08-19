@@ -9,6 +9,16 @@
 
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 
+<!-- Match the browser chrome (address bar on Android, and the bar behind the
+     home/back/recent-apps buttons) to the page's desk color. The page has
+     just one look (no separate light/dark theme), so all three tags below
+     point at the same color — the "light"/"dark" variants just stop the
+     browser from swapping in its own default when the OS is in dark mode. -->
+<meta name="theme-color" content="#b7ab93">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#b7ab93">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#b7ab93">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ashiqur">
 <meta property="og:title" content="All Links">
