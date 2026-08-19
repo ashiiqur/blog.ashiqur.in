@@ -1,6 +1,5 @@
 /**
  * generate-og-images.js
- *
  * Renders og-preview.html once per link/page and saves each result as a
  * static 1200x630 PNG. Real social crawlers (Facebook, X, Discord, Slack,
  * iMessage, LinkedIn...) fetch whatever URL is in <meta property="og:image">
