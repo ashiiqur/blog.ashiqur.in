@@ -33,7 +33,10 @@
    the browser's fallback font first. A short timeout is a safety net in
    case a font request stalls, so the page never stays hidden forever. */
 (function(){
-  function reveal(){ document.documentElement.classList.add("fonts-ready"); }
+  function reveal(){
+    document.documentElement.classList.add("fonts-ready");
+    window.dispatchEvent(new Event("page-reveal"));
+  }
   if (document.fonts && document.fonts.ready){
     Promise.race([
       Promise.all([
@@ -1939,8 +1942,16 @@ for (let i = 0; i < 16; i++) {
 /* today's date, footer */
 document.getElementById("today").textContent = new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
 
-/* draw-on animation for every platform icon, if the browser supports it */
+/* draw-on animation for every platform icon, if the browser supports it.
+   Priming (dasharray + full offset, no transition) happens immediately so
+   every icon is hidden-and-ready before the page is revealed. The actual
+   draw-in transition is deferred until the "page-reveal" event (fired once
+   the fonts-ready gate above lifts) — otherwise, on a slow connection, the
+   whole transition can run to completion while the page is still
+   visibility:hidden, so by the time it's shown the icons are already fully
+   drawn and no motion is visible. */
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const iconEls = [];
 document.querySelectorAll(".card-icon svg").forEach((svg, i) => {
   const shapes = svg.querySelectorAll("path, circle, rect");
   shapes.forEach((el) => {
@@ -1950,15 +1961,25 @@ document.querySelectorAll(".card-icon svg").forEach((svg, i) => {
       const len = el.getTotalLength();
       el.style.strokeDasharray = len;
       el.style.strokeDashoffset = reduceMotion ? 0 : len;
-      if (!reduceMotion) {
-        el.style.transition = `stroke-dashoffset .7s ease ${(i * 90) + 250}ms`;
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-          el.style.strokeDashoffset = 0;
-        }));
-      }
+      if (!reduceMotion) iconEls.push({ el, i });
     } catch (e) { /* skip silently if unsupported */ }
   });
 });
+
+function playIconDrawIn(){
+  iconEls.forEach(({ el, i }) => {
+    el.style.transition = `stroke-dashoffset .7s ease ${(i * 90) + 250}ms`;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      el.style.strokeDashoffset = 0;
+    }));
+  });
+}
+
+if (document.documentElement.classList.contains("fonts-ready")) {
+  playIconDrawIn();
+} else {
+  window.addEventListener("page-reveal", playIconDrawIn, { once: true });
+}
 
 /* ---- scroll position note (hand-drawn, theme-matched) ----
    Shows a little taped sticky-note next to the scrollbar while
