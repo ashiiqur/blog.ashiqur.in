@@ -1,0 +1,1611 @@
+:root {
+  --paper:       #f1f2ed;
+  --paper-alt:   #e7e9e1;
+  --ink:         #191b1a;
+  --ink-soft:    #5b5f5a;
+  --ink-faint:   #9a9d94;
+  --accent:      #2d4159;
+  --accent-soft: #7c93a6;
+  --rule:        #d3d5cc;
+  --radius: 3px;
+
+  --font-display: "Newsreader", Georgia, serif;
+  --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
+
+  --space-1: .25rem; --space-2: .5rem;  --space-3: .75rem; --space-4: 1rem;
+  --space-5: 1.5rem; --space-6: 2.25rem; --space-7: 3.5rem; --space-8: 5rem;
+  --space-9: 7rem;   --space-10: 9rem;
+
+  --measure: 680px;
+  --wide: 1120px;
+  --ledger-height: 420px; /* fixed viewing height for the qualifications/experience
+     columns — change this one value to show more or fewer entries before scrolling */
+
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --paper:       #14161a;
+  --paper-alt:   #1b1e22;
+  --ink:         #ecede7;
+  --ink-soft:    #9a9d96;
+  --ink-faint:   #666a63;
+  --accent:      #8fadcb;
+  --accent-soft: #5c7185;
+  --rule:        #2a2d31;
+  color-scheme: dark;
+}
+
+/* ---------- reset & base ---------- */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background .35s ease, color .35s ease;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0 0 var(--space-4);
+  color: var(--ink);
+}
+
+p { margin: 0 0 var(--space-4); }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img { max-width: 100%; display: block; }
+
+::selection { background: var(--accent); color: var(--paper); }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+button {
+  font-family: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- link styles ---------- */
+.link-ink {
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 0% 1px;
+  transition: background-size .28s ease;
+  padding-bottom: 1px;
+}
+.link-ink:hover, .link-ink:focus-visible { background-size: 100% 1px; }
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  font-family: var(--font-mono);
+  font-size: .82rem;
+  letter-spacing: .02em;
+  color: var(--accent);
+}
+.link-arrow svg { transition: transform .25s ease; width: 13px; height: 13px; }
+.link-arrow:hover svg { transform: translateX(3px); }
+
+/* ---------- layout ---------- */
+.container {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+.measure {
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+@media (max-width: 640px) {
+  .container { padding: 0 var(--space-5); }
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: .74rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 var(--space-3);
+  display: block;
+}
+
+/* ---------- reading progress ---------- */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--accent);
+  z-index: 100;
+  transition: width .1s linear;
+}
+
+/* ---------- header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  /* 
+    1. The inner mix blends --paper with 5% black.
+    2. The outer mix applies your original 88% opacity.
+  */
+  background: color-mix(in srgb, color-mix(in srgb, var(--paper) 90%, black) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+}
+.header-inner {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+.wordmark {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: .01em;
+  color: var(--ink);
+}
+.wordmark span { color: var(--accent); }
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+.site-nav-inner {
+  /* .site-nav's own flex/gap above has nothing to act on — .site-nav-inner,
+     not the <a> tags, is its only child. This is the rule that actually
+     spaces the links at desktop widths; the mobile media query below
+     overrides it to a column for the dropdown. */
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+.site-nav a {
+  font-size: .92rem;
+  color: var(--ink-soft);
+}
+.site-nav a:hover, .site-nav a.active { color: var(--ink); }
+.site-nav a.active { color: var(--accent); }
+
+.header-tools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.theme-toggle {
+  width: 34px; height: 34px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .2s ease;
+}
+.theme-toggle:hover { border-color: var(--accent); }
+.theme-toggle svg { width: 15px; height: 15px; }
+.theme-toggle .icon-moon { display: none; }
+[data-theme="dark"] .theme-toggle .icon-sun { display: none; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
+
+.nav-toggle {
+  display: none;
+  width: 34px; height: 34px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.nav-toggle span {
+  width: 18px; height: 1px;
+  background: var(--ink);
+  transition: transform .25s ease, opacity .25s ease;
+}
+body.nav-open .nav-toggle span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+body.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+
+@media (max-width: 700px) {
+  /* Let the nav drop to its own row below wordmark + tools, inside the
+     same header box — so growing it grows the header itself. */
+  .header-inner {
+    flex-wrap: wrap;
+    row-gap: 0; /* header-inner's flex `gap` inserts fixed space between
+       the icon row and the site-nav row regardless of the nav row's own
+       height — so even when site-nav is collapsed to 0 (closed state),
+       that gap stuck around and pushed the header's bottom border away
+       from the icon row. Zeroing it here lets the border hug the icon
+       row when closed; spacing for the open state is restored below on
+       the first nav link instead. */
+    padding-bottom: 0; /* this padding used to sit between the animating
+       site-nav row and the header's actual border — a fixed gap the whole
+       slide, so the reveal always looked like it stopped short of the
+       real edge. Moved onto .site-nav-inner below so it animates with
+       the content instead of sitting outside it. */
+  }
+
+  .wordmark { order: 1; }
+  .header-tools { order: 2; }
+
+  .site-nav {
+    order: 3;
+    flex-basis: 100%;
+    align-items: start; /* the desktop rule sets align-items:center, which
+       centers the link block inside the still-growing row — so as it
+       opened, the text visibly expanded outward from the middle instead
+       of staying put. Pinning it to the top keeps the text fixed and lets
+       only the row height (the reveal) animate. */
+    min-height: 0; /* lets this flex row shrink all the way to 0 */
+
+    /* The grow: row track expands/collapses to exact content height,
+       pushing the header's own bottom border down with it. */
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 0.35s linear, visibility 0s linear 0.35s;
+    /* grid-template-rows: linear reveal (see note above on the old
+       ease-out curve). visibility: this 0.35s delay is what makes CLOSE
+       smooth — the links stay visible and shrink away with the row, only
+       flipping to hidden once the collapse finishes, instead of vanishing
+       the instant you tap the icon. The .nav-open rule below zeroes the
+       delay so OPEN still shows the links immediately. */
+
+    visibility: hidden;
+  }
+
+  body.nav-open .site-nav {
+    grid-template-rows: 1fr;
+    visibility: visible;
+    transition: grid-template-rows 0.35s linear, visibility 0s linear 0s;
+  }
+
+  .site-nav-inner {
+    /* required for the grid trick — lets the row shrink below content size */
+    min-height: 0;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding-bottom: var(--space-4); /* the breathing room below "Contact",
+       now part of the content that animates — matches the padding-bottom
+       removed from .header-inner above, so the final open state looks the
+       same, but the reveal edge now tracks the header's real border the
+       whole way through the slide instead of stopping short of it. */
+  }
+
+  /* space between the top row and the links once open — this lives on
+     the link itself, not on .site-nav-inner: padding on the collapsing
+     box itself can't shrink to 0 the way content can, so it would have
+     kept the header a bit taller even when the menu is closed */
+  .site-nav-inner a:first-child {
+    margin-top: var(--space-4);
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .hero,
+  .contact-hero,
+  .about-hero,
+  .post-head {
+    padding-top: var(--space-4) !important;
+    margin-top: 0 !important;
+  }
+}
+
+/* ---------- hero (home) ---------- */
+.hero {
+  padding: var(--space-9) 0 var(--space-8);
+  border-bottom: 1px solid var(--rule);
+}
+.hero-name {
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -.01em;
+  margin-bottom: var(--space-5);
+}
+.hero-lede {
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  color: var(--ink-soft);
+  max-width: 560px;
+  line-height: 1.6;
+  margin-bottom: var(--space-6);
+}
+.hero-links {
+  display: flex;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+/* ---------- section headers ---------- */
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+  gap: var(--space-4);
+}
+.section-head h2 {
+  font-size: 1.05rem;
+  font-style: normal;
+}
+
+section.block { padding: var(--space-8) 0; }
+section.block + section.block { border-top: 1px solid var(--rule); }
+
+/* ---------- ledger / entry list ---------- */
+/* Fixed-height scroll area: once entries overflow --ledger-height, the
+   column scrolls internally instead of growing the page. Each ledger gets
+   its own thin scrollbar (the "slider") — styled to match the site rather
+   than the browser default, and deliberately opted back in to a visible
+   ::-webkit-scrollbar since the page-wide rule further down hides those
+   by default on fine-pointer devices.
+   No overscroll-behavior: contain here on purpose — with it set, once a
+   scroll/swipe that started inside this list reaches the list's own
+   bottom, the browser refuses to hand the rest of that same gesture to
+   the page underneath, so the page reads as "stuck" until the person
+   lifts their finger/mouse and starts a fresh scroll outside the list.
+   Leaving overscroll-behavior at its default lets that same continuous
+   gesture flow straight on into the page once the list is exhausted.
+   script.js backs this up with an explicit wheel handler, so the
+   handoff to the page is guaranteed at the scroll boundary (or
+   immediately, if the column has no overflow to scroll at all) rather
+   than depending on a given browser's default chaining.
+   The top/bottom rule is doubled to 2px (vs. the 1px hairline used
+   everywhere else) so the box reads as a closed ledger sheet - opened
+   and closed with its own line - rather than a plain hairline. */
+.ledger {
+  border-top: 2px solid var(--rule);
+  border-bottom: 2px solid var(--rule);
+  max-height: var(--ledger-height);
+  overflow-y: auto;
+  padding-right: var(--space-3);
+  scrollbar-width: thin;                             /* Firefox */
+  scrollbar-color: var(--accent-soft) transparent;    /* Firefox */
+}
+.ledger::-webkit-scrollbar {
+  display: block; /* overrides the global hidden-scrollbar rule for this element */
+  width: 6px;
+}
+.ledger::-webkit-scrollbar-track { background: transparent; }
+.ledger::-webkit-scrollbar-thumb {
+  background: var(--accent-soft);
+  border-radius: 10px;
+}
+.ledger::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+@media (max-width: 560px) {
+  .ledger { max-height: 340px; }
+}
+
+/* Entries tab: opt this particular .ledger back out of the fixed-height
+   scroll box above so it grows with the page instead, same as .posts-grid
+   and .works-list — a page-count-changing pagination click here should
+   scroll the whole page to the section top and reveal the new page's
+   first entry right away, not leave it sitting below whatever scrollTop
+   the box's own internal scrollbar happened to be at.
+   Scoped to #panel-entries specifically (rather than changed on the base
+   .ledger rule above) so any other fixed-height ledger elsewhere on the
+   site keeps its own internal scroll untouched — this override only
+   grows the one inside the Entries tab.
+   Nothing else needs to change to make that happen:
+     - script.js's animateHeightChange (the height-transition used by
+       every paginated list) already decides whether to clip a container
+       mid-animation by reading its *computed* overflow-y rather than
+       assuming per element, so once this is "visible" it gets the exact
+       same treatment Posts/Works already get.
+     - the ledger wheel-scroll-handoff listener in script.js checks
+       scrollHeight > clientHeight before doing anything; with no
+       max-height to overflow, that's never true here any more, so the
+       listener quietly no-ops on this element instead of needing to be
+       removed. */
+#panel-entries .ledger {
+  max-height: none;
+  overflow-y: visible;
+  padding-right: 0;
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 108px 1fr auto;
+  align-items: baseline;
+  gap: var(--space-5);
+  padding: var(--space-5) 0;
+  border-bottom: 1px solid var(--rule);
+  transition: opacity .2s ease;
+}
+.entry:hover { opacity: .72; }
+.entry-date {
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  color: var(--ink-faint);
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+.entry-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.entry-tag {
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  color: var(--accent);
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+@media (max-width: 560px) {
+  .entry {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+  .entry-tag { display: none; }
+}
+
+/* ---------- ledger entry — expanded (qualifications / experience) ---------- */
+.entry-main { min-width: 0; }
+.entry-main .entry-title { margin: 0 0 .2em; }
+.entry-org {
+  display: block;
+  font-family: var(--font-body);
+  font-size: .9rem;
+  color: var(--ink-soft);
+}
+.entry-desc {
+  margin: var(--space-2) 0 0;
+  color: var(--ink-soft);
+  font-size: .92rem;
+  line-height: 1.55;
+}
+
+.year-label {
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  color: var(--ink-faint);
+  letter-spacing: .06em;
+  margin: var(--space-7) 0 0;
+}
+.year-label:first-child { margin-top: 0; }
+
+/* ---------- fade-up on scroll (Animation Removed) ---------- */
+.fade-up {
+  opacity: 1;
+  transform: none;
+}
+.fade-up.is-visible { 
+  opacity: 1; 
+  transform: none; 
+}
+
+/* ---------- about page ---------- */
+.about-hero { padding: var(--space-8) 0 var(--space-7); }
+.about-hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-style: italic;
+  font-weight: 400;
+}
+.about-body p { color: var(--ink-soft); font-size: 1.02rem; }
+.about-body strong { color: var(--ink); font-weight: 500; }
+
+.now-list {
+  list-style: none;
+  margin: 0; padding: 0;
+  border-top: 1px solid var(--rule);
+}
+.now-list li {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: var(--space-5);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--rule);
+}
+.now-list .now-label {
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  color: var(--ink-faint);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.now-list .now-value { color: var(--ink-soft); }
+@media (max-width: 560px) {
+  .now-list li { grid-template-columns: 1fr; gap: var(--space-1); }
+}
+
+/* ---------- article ---------- */
+.post-head { padding: var(--space-7) 0 var(--space-6); }
+.post-meta {
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  color: var(--ink-faint);
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-4);
+}
+.post-title {
+  font-size: clamp(2rem, 5vw, 2.9rem);
+  margin-bottom: var(--space-4);
+}
+.post-dek {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+  max-width: var(--measure);
+}
+.post-tags { display: flex; gap: var(--space-3); margin-top: var(--space-5); }
+.tag {
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  letter-spacing: .04em;
+  color: var(--accent);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: .2em .6em;
+}
+
+/* ---------- download entry (PDF / Markdown) — injected by script.js
+   as a small row right after the article body (before .post-nav),
+   right-aligned to match the nav row underneath it. Each button shows
+   a file icon (what you're downloading) with a small download-arrow
+   badge on it (that you can download it) — see buildFileIcon() in
+   script.js. Its own class (not the smaller, plain .icon-btn used for
+   copy/share) since this composite icon needs more room to stay
+   legible. */
+.post-downloads {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin: 0 0 var(--space-3);
+}
+.entry-download-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .4em;
+}
+.entry-download-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-soft);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  cursor: pointer;
+  flex: none;
+  transition: color .2s ease, border-color .2s ease;
+}
+.entry-download-btn:hover, .entry-download-btn:focus-visible { color: var(--accent); border-color: var(--accent); }
+.entry-download-btn svg { width: 20px; height: 20px; }
+.entry-download-btn[data-busy="true"] { opacity: .55; pointer-events: none; }
+.entry-download-format {
+  font-family: var(--font-mono);
+  font-size: .68rem;
+  letter-spacing: .04em;
+  color: var(--ink-soft);
+}
+.entry-download-item:has(.entry-download-btn:hover),
+.entry-download-item:has(.entry-download-btn:focus-visible) {
+  color: var(--accent);
+}
+.entry-download-item:has(.entry-download-btn:hover) .entry-download-format,
+.entry-download-item:has(.entry-download-btn:focus-visible) .entry-download-format {
+  color: var(--accent);
+}
+
+.post-body {
+  padding-bottom: var(--space-8);
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+.post-body p { margin-bottom: var(--space-5); color: var(--ink); }
+.post-body p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 3.4em;
+  float: left;
+  line-height: .8;
+  padding: .06em .08em 0 0;
+  color: var(--accent);
+}
+.post-body h3 {
+  font-size: 1.35rem;
+  margin-top: var(--space-7);
+  font-style: italic;
+}
+.post-body blockquote {
+  margin: var(--space-6) 0;
+  padding-left: var(--space-5);
+  border-left: 2px solid var(--accent);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+}
+.post-body a { color: var(--accent); }
+
+.post-nav {
+  border-top: 1px solid var(--rule);
+  padding: var(--space-6) 0;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+.post-nav-item { max-width: 45%; }
+.post-nav-item.next { text-align: right; margin-left: auto; }
+.post-nav-label {
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  display: block;
+  margin-bottom: var(--space-2);
+}
+.post-nav-title { font-family: var(--font-display); font-size: 1.05rem; }
+
+/* ---------- contact ---------- */
+.contact-hero { padding: var(--space-8) 0 var(--space-7); }
+.contact-hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-style: italic;
+  font-weight: 400;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  padding-bottom: var(--space-9);
+}
+@media (max-width: 700px) {
+  .contact-grid { grid-template-columns: 1fr; gap: var(--space-6); }
+}
+.channel-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.channel-list li {
+  border-bottom: 1px solid var(--rule);
+  padding: var(--space-4) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+}
+.channel-name { font-family: var(--font-display); font-style: italic; font-size: 1.1rem; }
+.channel-handle { font-family: var(--font-mono); font-size: .82rem; color: var(--accent); }
+.channel-list-right { display: flex; align-items: center; gap: var(--space-3); }
+.channel-list-right .icon-btn[data-copied="true"]::after { top: -30px; }
+@media (max-width: 480px) {
+  .channel-handle { max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: .85rem;
+  letter-spacing: .02em;
+  padding: .75em 1.3em;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.btn:hover { background: var(--ink); color: var(--paper); }
+[data-theme="dark"] .btn:hover { background: var(--ink); color: var(--paper); }
+
+/* ---------- footer ---------- */
+.site-footer {
+  border-top: 1px solid var(--rule);
+  padding: var(--space-7) 0 var(--space-6);
+  /* Blends your --paper variable with 5% black */
+  background: color-mix(in srgb, var(--paper) 99%, black);
+}
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  justify-content: space-between;
+  align-items: center;
+}
+.colophon {
+  font-family: var(--font-mono);
+  font-size: .76rem;
+  color: var(--ink-faint);
+  margin: 0;
+}
+.footer-links {
+  display: flex;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+.footer-links a {
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  color: var(--ink-soft);
+}
+.footer-links a:hover { color: var(--accent); }
+.copyright {
+  font-family: var(--font-mono);
+  font-size: .74rem;
+  color: var(--ink-faint);
+  width: 100%;
+  margin: var(--space-5) 0 0;
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--rule);
+}
+
+/* ---------- back link ---------- */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: .82rem;
+  color: var(--ink-soft);
+  margin: var(--space-6) 0 0;
+}
+.back-link svg { width: 12px; height: 12px; }
+.back-link:hover, .back-link:focus-visible { color: var(--accent); }
+
+/* arrow moves on hover/keyboard-focus, and gets a little forward nudge
+   on click too (mainly for touch, which has no hover state) - see the
+   ".back-link" click listener in script.js that toggles .is-clicked */
+.back-link-arrow {
+  display: inline-block;
+  transition: transform .25s ease;
+}
+.back-link:hover .back-link-arrow,
+.back-link:focus-visible .back-link-arrow {
+  transform: translateX(4px);
+}
+.back-link-arrow.is-clicked {
+  animation: back-link-nudge .45s ease;
+}
+@keyframes back-link-nudge {
+  0%   { transform: translateX(0); }
+  40%  { transform: translateX(9px); }
+  70%  { transform: translateX(3px); }
+  100% { transform: translateX(0); }
+}
+
+
+@media (max-width: 700px) {
+  
+  .about-hero {
+    padding-bottom: var(--space-4) !important; 
+  }
+
+  /* Reduces the 5rem top padding for the text block */
+  section.block.about-body {
+    padding-top: var(--space-2) !important; 
+  }
+  
+  .contact-hero {
+    padding-bottom: var(--space-4) !important; 
+  }
+
+  /* Reduces the space between the intro text and the social links */
+  .contact-grid {
+    gap: var(--space-4) !important; 
+  }
+}
+
+/* ===Scrollbar=== */
+@media (pointer: fine) {
+  
+  /* Hide Native Scrollbars */
+  html {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  ::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
+  /* Custom Floating Scrollbar Layer */
+  .custom-scrollbar-track {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 40px; 
+    height: 100vh;
+    z-index: 9999; 
+    pointer-events: none; 
+  }
+
+  .custom-scrollbar-thumb {
+    position: absolute;
+    top: 0;
+    right: 2px;
+    width: 8px;
+    border-radius: 10px;
+    background-color: color-mix(in srgb, var(--paper) 70%, black);
+    opacity: 0;
+    transition: opacity 0.3s ease, background-color 0.2s ease;
+    pointer-events: auto; 
+    cursor: grab;
+  }
+
+  .custom-scrollbar-thumb:active {
+    cursor: grabbing;
+    background-color: color-mix(in srgb, var(--paper) 50%, black);
+  }
+
+  /* Visibility Class */
+  .custom-scrollbar-track.is-visible .custom-scrollbar-thumb {
+    opacity: 1;
+  }
+}
+
+/* ---------- entries / posts tabs ---------- */
+.tabs-nav {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+.tab-btn {
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: .55em 1.2em;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.tab-btn:hover { color: var(--ink); border-color: var(--accent); }
+.tab-btn.active {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.tab-panel[hidden] { display: none; }
+
+/* Paint the last-selected tab immediately on load (before script.js runs),
+   using [data-initial-tab] set by the pre-paint script in <head>.
+   Mirrors the data-theme pre-paint pattern used for dark mode. Without
+   this, the markup's default "Entries" tab flashes for a frame before
+   script.js swaps in the remembered tab. */
+html[data-initial-tab="tab-posts"] #tab-entries,
+html[data-initial-tab="tab-works"] #tab-entries {
+  background: transparent;
+  color: var(--ink-soft);
+  border-color: var(--rule);
+}
+html[data-initial-tab="tab-posts"] #tab-posts,
+html[data-initial-tab="tab-works"] #tab-works {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+html[data-initial-tab="tab-posts"] #panel-entries,
+html[data-initial-tab="tab-works"] #panel-entries { display: none; }
+html[data-initial-tab="tab-posts"] #panel-posts { display: block; }
+html[data-initial-tab="tab-works"] #panel-works { display: block; }
+
+/* ---------- pagination controls ----------
+   Built by script.js, one instance per listing (Posts / Works). Stays
+   completely absent unless that listing actually grows past the page
+   size — a short list renders exactly as before. */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2px;
+  width: fit-content;
+  margin: var(--space-6) auto 0;
+  padding: 3px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: calc(var(--radius) + 4px);
+  box-shadow: 0 1px 3px color-mix(in srgb, var(--ink) 12%, transparent);
+}
+.page-btn {
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  letter-spacing: .02em;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  min-width: 2.1em;
+  padding: .5em .75em;
+  line-height: 1;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.page-btn--prev, .page-btn--next { padding: .5em .9em; }
+.page-btn:hover:not(:disabled):not(.active) { color: var(--ink); border-color: var(--rule); }
+.page-btn.active { background: var(--accent); color: var(--paper); }
+.page-btn:disabled { color: var(--ink-faint); cursor: default; opacity: .5; }
+.page-ellipsis {
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  color: var(--ink-faint);
+  padding: .5em .4em;
+  user-select: none;
+}
+@media (max-width: 560px) {
+  .pagination { gap: 1px; }
+  .page-btn { padding: .45em .6em; font-size: .72rem; }
+  .page-btn--prev, .page-btn--next { padding: .45em .7em; }
+}
+
+/* ---------- post grid (photos / videos / files) ---------- */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--space-5);
+}
+.post-tile {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--paper-alt);
+  cursor: pointer; /* opens the popup viewer — see script.js */
+}
+.post-media {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-faint);
+  background-size: cover;
+  background-position: center;
+}
+.post-media svg { width: 32%; height: 32%; }
+/* once script.js confirms a real photo file exists and sets it as the
+   background, .has-photo gets added and this fades the placeholder
+   camera icon out — video tiles deliberately don't get this treatment,
+   their play icon is a permanent affordance, not a "no file" fallback */
+.post-media--photo svg { transition: opacity .25s ease; }
+.post-media--photo.has-photo svg { opacity: 0; }
+.post-media--video::after {
+  content: "";
+  position: absolute;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+  box-shadow: 0 0 0 1px var(--rule);
+}
+.post-media--video .icon-play {
+  position: relative;
+  z-index: 1;
+  width: .9rem;
+  height: .9rem;
+  color: var(--ink);
+}
+/* file tiles (pdf/zip/etc.) — same probe-and-fade pattern as photo tiles:
+   once script.js confirms a data-img preview exists, .has-preview fades
+   the placeholder document icon out. The format tag (PDF/ZIP…) is pinned
+   to a corner instead and stays visible either way, since it's useful
+   metadata rather than a "no file" fallback. */
+.post-media--file svg { transition: opacity .25s ease; }
+.post-media--file.has-preview svg { opacity: 0; }
+.post-media-tag {
+  position: absolute;
+  left: var(--space-2);
+  bottom: var(--space-2);
+  z-index: 1;
+  background: color-mix(in srgb, var(--paper) 85%, transparent);
+  backdrop-filter: blur(2px);
+}
+/* ---------- icon button (generic circular, used by every copy-to-clipboard control) ---------- */
+.icon-btn {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-soft);
+  flex: none;
+  position: relative;
+  transition: color .2s ease, border-color .2s ease;
+}
+.icon-btn:hover, .icon-btn:focus-visible { color: var(--accent); border-color: var(--accent); }
+.icon-btn svg { width: 12px; height: 12px; }
+.icon-btn[data-copied="true"]::after {
+  content: "Copied";
+  position: absolute;
+  right: 0;
+  font-family: var(--font-mono);
+  font-size: .62rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: .2em .45em;
+  white-space: nowrap;
+}
+
+.post-actions {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  display: flex;
+  gap: var(--space-2);
+  z-index: 2;
+}
+.post-actions .icon-btn {
+  background: color-mix(in srgb, var(--paper) 85%, transparent);
+  backdrop-filter: blur(2px);
+}
+.post-actions .icon-btn[data-copied="true"]::after { top: 34px; }
+.post-caption {
+  position: absolute;
+  left: var(--space-2);
+  right: var(--space-2);
+  bottom: var(--space-2);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: .1em;
+  background: color-mix(in srgb, var(--paper) 78%, transparent);
+  backdrop-filter: blur(2px);
+  border-radius: var(--radius);
+  padding: .35em .5em;
+  opacity: 0;                        /* hidden until the tile is hovered/focused */
+  transition: opacity .2s ease;
+  pointer-events: none;              /* stays out of the way of clicks while hidden */
+}
+.post-tile:hover .post-caption,
+.post-tile:focus-within .post-caption {
+  opacity: 1;
+  pointer-events: auto;
+}
+.post-title {
+  font-family: var(--font-body);
+  font-size: .74rem;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.post-date {
+  font-family: var(--font-mono);
+  font-size: .62rem;
+  letter-spacing: .04em;
+  color: var(--ink-faint);
+}
+@media (max-width: 560px) {
+  .posts-grid { grid-template-columns: repeat(2, 1fr); }
+  .section-head { flex-direction: column; align-items: stretch; gap: var(--space-3); }
+  .search-bar { max-width: none; }
+  .work-card { flex-direction: column !important; }
+  .work-thumb { width: 100%; height: 160px; }
+}
+
+/* ---------- search bar (Entries / Posts / Works) ---------- */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: .45em .7em;
+  max-width: 260px;
+  width: 100%;
+  transition: border-color .2s ease;
+}
+.search-bar:focus-within { border-color: var(--accent); }
+.search-icon { width: 14px; height: 14px; color: var(--ink-faint); flex: none; }
+.search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: .85rem;
+  color: var(--ink);
+  width: 100%;
+}
+.search-input::placeholder { color: var(--ink-faint); }
+.empty-state {
+  display: none;
+  font-family: var(--font-body);
+  color: var(--ink-faint);
+  font-size: .92rem;
+  padding: var(--space-5) 0 0;
+}
+
+/* ---------- split columns (qualifications / experience, shared search) ---------- */
+.search-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-6);
+}
+.split-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+}
+.split-col { min-width: 0; }
+.split-col .empty-state { text-align: center; }
+@media (max-width: 700px) {
+  .split-columns { grid-template-columns: 1fr; gap: var(--space-6); }
+}
+
+/* ---------- works list (horizontal detail cards) ---------- */
+.works-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-5);
+}
+.work-card {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-5);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  transition: border-color .2s ease;
+}
+.work-card:hover { border-color: var(--accent-soft); }
+.work-card:nth-child(even) { flex-direction: row-reverse; }
+.work-thumb {
+  flex: none;
+  width: 96px;
+  height: 96px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-faint);
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+.work-thumb svg { width: 38%; height: 38%; transition: opacity .25s ease; }
+.work-thumb.has-photo svg { opacity: 0; }
+.work-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.work-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+.work-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin: 0;
+  color: var(--ink);
+}
+.work-desc {
+  color: var(--ink-soft);
+  font-size: .92rem;
+  line-height: 1.55;
+  margin: 0;
+}
+.work-links {
+  display: flex;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: var(--space-2);
+}
+.link-arrow.is-download:hover svg { transform: translateY(2px); }
+/* ---------- pixel portrait (home, "Find me") ---------- */
+.avatar-pixel-wrap {
+  margin: var(--space-3) auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+.avatar-pixel {
+  width: clamp(180px, 24vw, 260px);
+  height: clamp(180px, 24vw, 260px);
+  aspect-ratio: 1 / 1;
+  background: transparent;
+}
+.pixel-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* blow the small canvas up as crisp blocky squares, not a blur */
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+}
+.avatar-pixel-caption {
+  font-family: var(--font-mono);
+  font-size: .74rem;
+  color: var(--ink-faint);
+  letter-spacing: .02em;
+  margin: 0;
+}
+.avatar-updated-stamp {
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  color: var(--ink-faint);
+  letter-spacing: .02em;
+  margin: 0;
+}
+
+/* ---------- special circles (3-up image showcase) ---------- */
+.special-row {
+  display: flex;
+  flex-wrap: nowrap; /* stay horizontal on every screen size, including mobile */
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-5);
+}
+.special-circle {
+  width: clamp(72px, 22vw, 130px);
+  height: clamp(72px, 22vw, 130px);
+  aspect-ratio: 1 / 1;
+  flex: none;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  background-color: var(--paper-alt);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-faint);
+  overflow: hidden;
+  transition: border-color .2s ease;
+}
+.special-circle:hover { border-color: var(--accent-soft); }
+.special-circle svg { width: 30%; height: 30%; }
+.special-circle.has-photo svg { display: none; }
+.special-caption {
+  margin: var(--space-4) 0 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--ink);
+}
+@media (max-width: 420px) {
+  .special-row { gap: var(--space-3); }
+}
+
+/* ---------- last-updated stamp (footer) ---------- */
+.site-updated {
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  color: var(--ink-faint);
+  width: 100%;
+  text-align: center;
+  margin: var(--space-2) 0 0;
+}
+
+/* ---------- post viewer (popup) ----------
+   Built by script.js; one shared instance reused for every .post-tile.
+   Content and the toolbar adapt to the tile's data-type (photo/video/
+   file); ← → arrows step through whatever's currently visible, × closes. */
+.viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;   /* fallback for browsers without dvh support */
+  height: 100dvh;  /* tracks the *currently visible* viewport, so the
+                       toolbar showing/hiding can't push content under it */
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.viewer[hidden] { display: none; }
+.viewer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--ink) 78%, transparent);
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+.viewer.is-open .viewer-backdrop { opacity: 1; }
+
+.viewer-panel {
+  position: relative;
+  z-index: 1;
+  width: min(880px, 92vw);
+  max-height: 88vh;
+  max-height: 88dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(8px) scale(.98);
+  transition: opacity .22s ease, transform .22s ease;
+}
+.viewer.is-open .viewer-panel { opacity: 1; transform: none; }
+
+.viewer-stage {
+  position: relative;
+  flex: 1;
+  min-height: 240px;
+  max-height: 68vh;
+  max-height: 68dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper-alt);
+  overflow: hidden; /* zoomed panning is handled by transform, not scroll */
+}
+.viewer-media--photo {
+  max-width: 100%;
+  max-height: 68vh;
+  max-height: 68dvh;
+  object-fit: contain;
+  cursor: zoom-in;
+  opacity: 1;
+  transition: transform .2s ease, opacity .25s ease;
+  touch-action: none; /* let JS own drag/wheel gestures instead of the browser */
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.viewer-media--photo.is-panning { transition: none; } /* instant while actively dragging */
+.viewer-media--video {
+  width: 100%;
+  max-height: 68vh;
+  max-height: 68dvh;
+  background: #000;
+}
+
+/* placeholder shown for a photo/video/file with no usable file loaded —
+   mirrors the same svg-icon-plus-tag pattern used on the grid tiles */
+.viewer-placeholder {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  width: 100%;
+  height: 100%;
+  min-height: 240px;
+  color: var(--ink-faint);
+  padding: var(--space-6);
+}
+.viewer-placeholder svg { width: 25%; max-width: 96px; height: auto; transition: opacity .25s ease; }
+.viewer-placeholder[data-has-preview="true"] svg { opacity: 0; }
+.viewer-placeholder-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+}
+.viewer-placeholder[data-has-preview="true"] .viewer-placeholder-img { opacity: 1; }
+.viewer-placeholder-tag {
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  letter-spacing: .06em;
+  color: var(--accent);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: .25em .7em;
+  position: relative;
+  z-index: 1;
+  background: var(--paper);
+}
+
+.viewer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--rule);
+  flex-wrap: wrap;
+}
+.viewer-caption { display: flex; flex-direction: column; gap: .15em; min-width: 0; }
+.viewer-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.viewer-date {
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  letter-spacing: .04em;
+  color: var(--ink-faint);
+}
+
+/* toolbar — its buttons change per data-type (zoom for photos, an open
+   link for files, and so on), always via the same .viewer-tool style */
+.viewer-toolbar { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.viewer-tool {
+  display: flex;
+  align-items: center;
+  gap: .4em;
+  font-family: var(--font-mono);
+  font-size: .68rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: .4em .7em;
+  transition: color .2s ease, border-color .2s ease;
+}
+.viewer-tool svg { width: 13px; height: 13px; flex: none; }
+.viewer-tool:hover, .viewer-tool:focus-visible { color: var(--accent); border-color: var(--accent); }
+.viewer-tool:disabled { opacity: .4; cursor: not-allowed; }
+.viewer-tool:disabled:hover { color: var(--ink-soft); border-color: var(--rule); }
+
+/* close + prev/next controls float over the panel/backdrop */
+.viewer-close, .viewer-nav {
+  position: absolute;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--paper);
+  background: color-mix(in srgb, var(--ink) 55%, transparent);
+  transition: background .2s ease;
+}
+.viewer-close:hover, .viewer-nav:hover,
+.viewer-close:focus-visible, .viewer-nav:focus-visible {
+  background: color-mix(in srgb, var(--ink) 75%, transparent);
+}
+.viewer-close svg, .viewer-nav svg { width: 18px; height: 18px; }
+.viewer-close { top: var(--space-5); right: var(--space-5); }
+.viewer-prev { left: var(--space-4); top: 50%; transform: translateY(-50%); }
+.viewer-next { right: var(--space-4); top: 50%; transform: translateY(-50%); }
+.viewer-nav[hidden] { display: none; }
+
+body.viewer-open { overflow: hidden; }
+body.viewer-open .custom-scrollbar-track { display: none !important; }
+
+@media (max-width: 640px) {
+  .viewer-panel {
+    width: 100vw;
+    max-height: 100vh;
+    max-height: 100dvh;
+    height: 100vh;
+    height: 100dvh;
+    border-radius: 0;
+    border: none;
+  }
+  .viewer-stage, .viewer-media--photo, .viewer-media--video {
+    max-height: 55vh;
+    max-height: 55dvh;
+  }
+  .viewer-close { top: var(--space-3); right: var(--space-3); width: 36px; height: 36px; }
+  .viewer-prev { left: var(--space-2); top: 27.5vh; top: 27.5dvh; width: 34px; height: 34px; }
+  .viewer-next { right: var(--space-2); top: 27.5vh; top: 27.5dvh; width: 34px; height: 34px; }
+  .viewer-footer { flex-direction: column; align-items: stretch; }
+
+  /* auto-hide: hidden by default, revealed by the "controls-visible"
+     class the popup JS toggles on tap or pointer movement (see
+     showControls() in script.js). Desktop is untouched — these rules
+     only exist inside this mobile breakpoint. */
+  .viewer-close, .viewer-nav {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
+  }
+  .viewer.controls-visible .viewer-close,
+  .viewer.controls-visible .viewer-nav {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+
+
+.home-link {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-right: 15px; /* Adjust this value to control the space before 'Writing' */
+}
+
+/* ---------- print (used by the post-page "Download PDF" button, which
+   just calls window.print() — this is what turns that into a clean,
+   article-only PDF via the browser's own "Save as PDF" destination).
+   Forces light-theme colours regardless of the visitor's data-theme so
+   a dark-mode reader doesn't burn ink/toner printing a near-black page,
+   and strips every bit of site chrome so only the article remains. ---------- */
+@media print {
+  :root, [data-theme="dark"] {
+    --paper: #ffffff;
+    --paper-alt: #ffffff;
+    --ink: #111111;
+    --ink-soft: #333333;
+    --ink-faint: #666666;
+    --accent: #2d4159;
+    --rule: #cccccc;
+  }
+  .progress-bar,
+  .site-header,
+  .site-footer,
+  .custom-scrollbar-track,
+  .post-nav,
+  .back-link,
+  .post-downloads,
+  .viewer { display: none !important; }
+
+  body { background: #fff; font-size: 12pt; }
+  main, .container, article { max-width: none !important; margin: 0 !important; padding: 0 !important; }
+  .post-head { padding: 0 0 var(--space-5); }
+  .post-body { padding-bottom: 0; }
+  .post-title { font-size: 24pt; }
+  .post-body img { max-width: 100%; break-inside: avoid; }
+  .post-body h3, .post-title, .post-dek { break-after: avoid; }
+  .post-body blockquote, .post-body p, .post-body figure { break-inside: avoid; }
+  a[href]::after { content: ""; } /* keep link text clean, no printed URLs */
+}

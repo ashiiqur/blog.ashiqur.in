@@ -1,2 +1,2 @@
-# blog.ashiqur.in
-Personal Blog
+# blog
+beta
