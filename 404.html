@@ -8,6 +8,18 @@
 <meta name="robots" content="noindex">
 <link rel="icon" href="https://blog.ashiqur.in/favicon.svg" type="image/svg+xml">
 
+<!-- Match the browser chrome (Android address bar / nav bar) to this
+     page's actual --paper color for whichever theme is active. Static
+     light/dark tags cover the instant before JS runs (and browsers that
+     just go by prefers-color-scheme); the script further down updates
+     the tag's content live once it knows the resolved theme, so a
+     stored preference in localStorage (light while the OS is set to
+     dark, or vice versa) is reflected correctly too. -->
+<meta name="theme-color" content="#f1f2ed">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f1f2ed">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#14161a">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ashiqur">
 <meta property="og:title" content="Page not found">
@@ -24,7 +36,14 @@
 <meta name="twitter:image" content="https://blog.ashiqur.in/assets/og/404.png">
 
 <script>
-(function(){try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+(function(){try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);
+  /* keep the address-bar color meta tag in sync with the theme actually
+     applied above — matters when a stored preference disagrees with the
+     OS setting, since the static <meta> tags above only cover the
+     no-JS / prefers-color-scheme case. */
+  var tc = document.querySelector('meta[name="theme-color"]:not([media])');
+  if (tc) tc.setAttribute('content', t === 'dark' ? '#14161a' : '#f1f2ed');
+}catch(e){}})();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
