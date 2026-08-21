@@ -32,6 +32,30 @@
     });
   }
 
+  /* link handling, installed app only
+     Rule: target="_blank" -> always hand off to the system browser (or
+     whatever app is registered for that URL). No target (default
+     target="_self") -> stays inside the installed app window.
+     In an ordinary browser tab this is already how links behave, so the
+     handler below only does anything once the site is running installed
+     (standalone/fullscreen display, or iOS's own "add to home screen"
+     flag) — that's the situation where a plain click can otherwise get
+     swallowed into the app's own webview instead of reaching a real
+     browser. preventDefault + window.open(..., "noopener") is what
+     reliably forces that escape. */
+  var isInstalled =
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.matchMedia("(display-mode: fullscreen)").matches ||
+    window.navigator.standalone === true;
+  if (isInstalled) {
+    document.addEventListener("click", function (e) {
+      var link = e.target.closest ? e.target.closest("a[target='_blank']") : null;
+      if (!link || !link.href) return;
+      e.preventDefault();
+      window.open(link.href, "_blank", "noopener");
+    });
+  }
+
   /* footer year */
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
