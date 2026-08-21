@@ -56,6 +56,27 @@
     });
   }
 
+  /* splash screen: fades out once the page has actually finished loading
+     (window "load", same signal the sw registration below waits for)
+     rather than on a timer, so it never dismisses early on a slow
+     connection. Reduced-motion users just get an instant hide — the CSS
+     drops the transition, this JS doesn't need to know either way. */
+  var splash = document.getElementById("splash");
+  if (splash && isInstalled) {
+    var hideSplash = function () {
+      splash.classList.add("is-hidden");
+      splash.addEventListener("transitionend", function () { splash.remove(); }, { once: true });
+      // Fallback in case transitionend never fires (e.g. reduced motion
+      // dropped the transition entirely) so the node still gets cleaned up.
+      setTimeout(function () { if (splash.parentNode) splash.remove(); }, 600);
+    };
+    if (document.readyState === "complete") {
+      hideSplash();
+    } else {
+      window.addEventListener("load", hideSplash);
+    }
+  }
+
   /* footer year */
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
