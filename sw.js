@@ -42,11 +42,13 @@ const CORE_FILES = [
   "./favicon.svg",
   "./offline.html",
   "./ashiqur.png",
-  // Manifest icon + OG preview images: small, shared, worth having on
+  // Manifest icons + OG preview images: small, shared, worth having on
   // day one. NOT included: assets/posts/... and assets/works/... — those
   // are per-post media (some are large: video, zip, pdf) and get cached
   // automatically the first time someone actually opens that post instead.
-  "./assets/icon/icon.png",
+  "./assets/icons/icon-192.png",
+  "./assets/icons/icon-512.png",
+  "./assets/icons/icon-maskable-512.png",
   "./blog/",
   "./blog/index.html",
   "./about/",
