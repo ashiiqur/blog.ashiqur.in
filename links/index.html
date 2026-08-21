@@ -90,8 +90,7 @@
     --photo-blur:9px;
   }
 
-
-     * {
+  * {
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -103,7 +102,11 @@
   }
 
   *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
+  /* overscroll-behavior-y:contain stops the pull-down gesture at the top of
+     the page from chaining into the browser's own native pull-to-refresh
+     (mainly a Chrome/Android thing) — the custom themed one below (see
+     .pull-refresh) replaces it instead. */
+  html,body{margin:0;padding:0;overscroll-behavior-y:contain;}
 
   /* keep the page invisible until the "fonts-ready" class above lands, so
      the very first paint already has the real webfonts — no fallback-font
@@ -215,6 +218,49 @@
   }
   @media (prefers-reduced-motion: reduce){
     .scroll-note{ transition:opacity .01ms; }
+  }
+
+  /* ============ PULL TO REFRESH (custom, theme-matched) ============
+     Replaces the browser's own native pull-to-refresh (disabled above via
+     overscroll-behavior-y). Dragging down while already scrolled to the
+     very top of the page pulls this taped tag down from behind the top
+     edge of the screen; release past the threshold to reload, or let go
+     early and it springs back with no effect. */
+  .pull-refresh{
+    position:fixed;
+    top:0; left:50%;
+    transform:translate(-50%, -100%);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:var(--tape-yellow);
+    color:var(--ink);
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:19px;
+    line-height:1;
+    padding:9px 18px 10px 14px;
+    border-radius:0 0 10px 10px;
+    box-shadow:0 5px 12px rgba(35,30,20,.28);
+    z-index:1001;
+    pointer-events:none;
+    white-space:nowrap;
+    transition:transform .25s ease;
+  }
+  /* transitions are switched off while a finger is actively dragging it,
+     so it tracks the touch 1:1 instead of lagging behind */
+  .pull-refresh.dragging{ transition:none; }
+  .pull-refresh-icon{ width:18px; height:18px; flex-shrink:0; color:var(--ink); transition:transform .12s linear; }
+  .pull-refresh-icon svg{ width:100%; height:100%; display:block; }
+  .pull-refresh-icon path{ fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+  .pull-refresh-icon.spinning{ animation:pullRefreshSpin .75s linear infinite; transition:none; }
+  @keyframes pullRefreshSpin{ to{ transform:rotate(360deg); } }
+  @media (max-width:480px){
+    .pull-refresh{ font-size:16px; padding:7px 14px 8px 11px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .pull-refresh, .pull-refresh-icon{ transition:none; }
+    .pull-refresh-icon.spinning{ animation:none; }
   }
 
   /* folded corner, top right */
@@ -1194,6 +1240,11 @@
 </head>
 <body>
 
+<div class="pull-refresh" id="pull-refresh" aria-hidden="true">
+  <span class="pull-refresh-icon" id="pull-refresh-icon"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 13.9-5.4M20 12a8 8 0 0 1-13.9 5.4"/><path d="M17 3v4h-4M7 21v-4h4"/></svg></span>
+  <span class="pull-refresh-text" id="pull-refresh-text">Pull to refresh</span>
+</div>
+
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="avatar-pixel" viewBox="0 0 32 32">
     <g fill="var(--accent, #2d4159)">
@@ -2046,6 +2097,97 @@ if (document.documentElement.classList.contains("fonts-ready")) {
   positionNote(percentScrolled());
   window.addEventListener("scroll", updateNote, { passive:true });
   window.addEventListener("resize", () => positionNote(percentScrolled()), { passive:true });
+})();
+
+/* ---- pull-to-refresh (custom, theme-matched) ----
+   The browser's native pull-to-refresh is switched off (overscroll-behavior-y:
+   contain, in the CSS above) so this can stand in for it: dragging down while
+   already scrolled to the very top drags the taped tag down from the top of
+   the screen. Release before the threshold and it springs back doing
+   nothing; release past it and the page reloads. Touch-only, since that's
+   the only input this gesture applies to. */
+(function(){
+  const el   = document.getElementById("pull-refresh");
+  const icon = document.getElementById("pull-refresh-icon");
+  const text = document.getElementById("pull-refresh-text");
+  if (!el || !icon || !text) return;
+
+  const THRESHOLD    = 70;   // px of pull before letting go triggers a refresh
+  const MAX_PULL     = 100;  // px it can be dragged before the rubber-band kicks in
+  const RESISTANCE   = 0.5;  // the tag moves slower than the finger
+  const REFRESH_HOLD = 44;   // px it hangs at while the reload is in flight
+
+  let startY = null;
+  let pulling = false;
+  let ready = false;
+  let refreshing = false;
+
+  function atTop(){
+    return (window.scrollY || document.documentElement.scrollTop || 0) <= 0;
+  }
+
+  function setPull(px){
+    const eased = px <= MAX_PULL ? px : MAX_PULL + (px - MAX_PULL) * 0.2;
+    el.style.transform = `translate(-50%, calc(-100% + ${eased}px))`;
+    const progress = Math.min(px / THRESHOLD, 1);
+    icon.style.transform = `rotate(${progress * 200}deg)`;
+    const nowReady = px >= THRESHOLD;
+    if (nowReady !== ready){
+      ready = nowReady;
+      text.textContent = ready ? "Release to refresh" : "Pull to refresh";
+    }
+  }
+
+  function reset(){
+    el.classList.remove("dragging");
+    el.style.transform = "";
+    icon.style.transform = "";
+    icon.classList.remove("spinning");
+    text.textContent = "Pull to refresh";
+    ready = false;
+  }
+
+  function onTouchStart(e){
+    if (refreshing || !atTop() || e.touches.length !== 1) return;
+    if (document.body.style.overflow === "hidden") return; // a modal is open
+    if (e.target.closest && e.target.closest(".doodle-canvas.drawing-active")) return;
+    startY = e.touches[0].clientY;
+    pulling = true;
+    el.classList.add("dragging");
+  }
+
+  function onTouchMove(e){
+    if (!pulling) return;
+    const dy = e.touches[0].clientY - startY;
+    if (dy <= 0 || !atTop()){
+      pulling = false;
+      reset();
+      return;
+    }
+    e.preventDefault();
+    setPull(dy * RESISTANCE);
+  }
+
+  function onTouchEnd(){
+    if (!pulling) return;
+    pulling = false;
+    if (ready){
+      refreshing = true;
+      el.classList.remove("dragging");
+      el.style.transform = `translate(-50%, calc(-100% + ${REFRESH_HOLD}px))`;
+      icon.style.transform = "";
+      icon.classList.add("spinning");
+      text.textContent = "Refreshing…";
+      setTimeout(() => window.location.reload(), 450);
+    } else {
+      reset();
+    }
+  }
+
+  document.addEventListener("touchstart", onTouchStart, { passive:true });
+  document.addEventListener("touchmove", onTouchMove, { passive:false });
+  document.addEventListener("touchend", onTouchEnd, { passive:true });
+  document.addEventListener("touchcancel", () => { if (pulling){ pulling = false; reset(); } }, { passive:true });
 })();
 
 /* ---- side photos: blurred until tapped, remembered per browser ---- */
