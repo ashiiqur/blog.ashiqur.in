@@ -53,15 +53,6 @@ html {
   overscroll-behavior-y: none;
 }
 
-/* Pinch-zoom + double-tap-zoom off, installed app only (class is added by
-   script.js when running standalone/fullscreen/iOS home-screen — never in
-   an ordinary browser tab). pan-x pan-y keeps normal scroll/swipe gestures
-   working; it's the zoom gestures specifically that get dropped. */
-html.no-zoom,
-html.no-zoom body {
-  touch-action: pan-x pan-y;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -83,6 +74,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background .35s ease, color .35s ease;
+}
+
+/* installed app only (script.js adds this class): backs the JS-side
+   pinch/double-tap zoom lockout at the CSS layer, so the browser never
+   offers pinch-zoom on any element in the first place rather than
+   relying only on JS to catch the gesture after it's started. pan-x/
+   pan-y keeps ordinary scrolling untouched — only the zoom gestures are
+   dropped. Never applied in a plain browser tab. */
+body.is-app {
+  touch-action: pan-x pan-y;
 }
 
 h1, h2, h3, h4 {
