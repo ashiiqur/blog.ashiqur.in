@@ -29,7 +29,15 @@
 <meta name="twitter:image" content="https://blog.ashiqur.in/assets/og/home.png">
 
 <script>
-(function(){try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute('content',t==='dark'?'#121417':'#dcddd8');}}catch(e){}})();
+(function(){try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute('content',t==='dark'?'#121417':'#dcddd8');}
+  /* Flag installed-app runs (standalone/fullscreen PWA window, or iOS's
+     own "add to home screen") before first paint, same detection
+     script.js uses for its own installed-only link handling. The splash
+     screen's CSS gates on this class so a plain browser tab never sees
+     it flash in. */
+  var standalone = window.matchMedia('(display-mode: standalone)').matches || window.matchMedia('(display-mode: fullscreen)').matches || window.navigator.standalone === true;
+  if (standalone) { document.documentElement.classList.add('is-pwa'); }
+}catch(e){}})();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,6 +46,10 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+<div id="splash" aria-hidden="true">
+  <div class="splash-mark">ashiqur</div>
+</div>
 
 <header class="site-header">
   <div class="header-inner">
