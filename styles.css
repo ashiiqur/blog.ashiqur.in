@@ -411,7 +411,7 @@ section.block + section.block { border-top: 1px solid var(--rule); }
    its own thin scrollbar (the "slider") — styled to match the site rather
    than the browser default, and deliberately opted back in to a visible
    ::-webkit-scrollbar since the page-wide rule further down hides those
-   by default on fine-pointer devices.
+   by default everywhere, mobile included.
    No overscroll-behavior: contain here on purpose — with it set, once a
    scroll/swipe that started inside this list reaches the list's own
    bottom, the browser refuses to hand the rest of that same gesture to
@@ -865,16 +865,21 @@ section.block + section.block { border-top: 1px solid var(--rule); }
 }
 
 /* ===Scrollbar=== */
+
+/* Hide native scrollbars everywhere, including mobile browsers' own
+   scroll indicator/slider. Unscoped from pointer:fine on purpose: on
+   fine-pointer (desktop) devices this makes room for the custom floating
+   scrollbar below; on touch devices there's no replacement UI, scrolling
+   just becomes indicator-free, which is what was asked for. */
+html {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera - incl. mobile Safari/Chrome */
+}
+
 @media (pointer: fine) {
-  
-  /* Hide Native Scrollbars */
-  html {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-  ::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-  }
 
   /* Custom Floating Scrollbar Layer */
   .custom-scrollbar-track {
