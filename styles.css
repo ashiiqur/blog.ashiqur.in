@@ -37,6 +37,45 @@
   color-scheme: dark;
 }
 
+/* ---------- PWA splash screen ----------
+   Installed-app only (html.is-pwa, set pre-paint by the inline head
+   script — see index.html). A plain browser tab never renders this at
+   all, so there's no flash for ordinary visits.
+
+   Static fade, not a slide: the mark sits centered and still, and the
+   whole screen just dissolves once script.js's window "load" handler
+   marks it .is-hidden. Colors are the theme's own --paper/--ink/--rule,
+   so dark mode gets a dark splash and light mode a light one automatically
+   — nothing hardcoded here needs to change if the palette above does. */
+#splash { display: none; }
+html.is-pwa #splash {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper);
+  opacity: 1;
+  transition: opacity .45s ease;
+}
+html.is-pwa #splash.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.splash-mark {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  letter-spacing: .04em;
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: .35rem .8rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.is-pwa #splash { transition: none; }
+}
+
 /* ---------- reset & base ---------- */
 * { box-sizing: border-box; }
 html {
