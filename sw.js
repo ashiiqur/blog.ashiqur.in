@@ -23,7 +23,7 @@
 //
 // Bump VERSION whenever you want returning visitors to drop old cached
 // files and re-fetch the CORE_FILES list fresh.
-const VERSION = "v3";
+const VERSION = "v4";
 const CORE_CACHE_NAME = "ashiqur-core-" + VERSION;
 const RUNTIME_CACHE_NAME = "ashiqur-runtime-" + VERSION;
 
@@ -39,6 +39,7 @@ const CORE_FILES = [
   "./styles.css",
   "./script.js",
   "./manifest.json",
+  "./manifest-dark.json",
   "./favicon.svg",
   "./offline.html",
   "./ashiqur.png",
