@@ -39,7 +39,16 @@
 
 /* ---------- reset & base ---------- */
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  /* stops the browser's own native pull-to-refresh reload at the very
+     top of the page — the custom .refresh-bar below replaces it with a
+     tap-to-confirm button instead of an immediate reload. This is a
+     document-level containment only; it doesn't touch the .ledger's own
+     overscroll-behavior further down, which is deliberately left at its
+     default so scroll chains through to the page as before. */
+  overscroll-behavior-y: contain;
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -886,6 +895,59 @@ section.block + section.block { border-top: 1px solid var(--rule); }
   .custom-scrollbar-track.is-visible .custom-scrollbar-thumb {
     opacity: 1;
   }
+}
+
+/* ---------- pull-to-refresh bar ----------
+   Built by script.js. Sits just under .site-header (its "top" is set in
+   JS to the header's live height, same trick the floating scrollbar
+   uses). Hidden above the header by default and slid into view once a
+   pull-down gesture at the top of the page crosses the drag threshold —
+   see script.js for the touch handling itself. */
+.refresh-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 40; /* under .site-header's 50, so it visually tucks in below it */
+  display: flex;
+  justify-content: center;
+  transform: translateY(-130%);
+  transition: transform .28s ease;
+  pointer-events: none;
+}
+.refresh-bar.is-visible {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.refresh-bar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  letter-spacing: .02em;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: .5em 1em;
+  margin-top: var(--space-3);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--ink) 14%, transparent);
+  transition: border-color .2s ease, background .2s ease;
+}
+.refresh-bar-btn:hover, .refresh-bar-btn:focus-visible {
+  border-color: var(--accent);
+}
+.refresh-bar-btn svg {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  transition: transform .2s ease;
+}
+.refresh-bar.is-loading .refresh-bar-btn svg {
+  animation: refresh-bar-spin .7s linear infinite;
+}
+@keyframes refresh-bar-spin {
+  to { transform: rotate(360deg); }
 }
 
 /* ---------- entries / posts tabs ---------- */
