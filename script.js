@@ -313,6 +313,79 @@
 })();
 
 
+/* pull-to-refresh prompt
+   Rule: dragging down while already at the top of the page reveals a
+   "Refresh" button positioned just under the header, instead of letting
+   the browser trigger its own native pull-to-refresh reload (that native
+   behaviour is suppressed via `overscroll-behavior-y: contain` on html
+   in styles.css). Tapping the button is what actually reloads the page —
+   a plain reload is enough to get fresh content, since sw.js is
+   network-first already. Touch-only: pull-to-refresh isn't a thing on
+   desktop pointer devices. */
+(function () {
+  "use strict";
+  if (!("ontouchstart" in window)) return;
+
+  var DRAG_THRESHOLD = 70; // px of downward drag before the button appears
+
+  var refreshBar = document.createElement("div");
+  refreshBar.className = "refresh-bar";
+  refreshBar.innerHTML =
+    '<button type="button" class="refresh-bar-btn">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>' +
+      "Refresh" +
+    "</button>";
+  document.body.appendChild(refreshBar);
+  var refreshBtn = refreshBar.querySelector(".refresh-bar-btn");
+
+  function positionRefreshBar() {
+    var siteHeader = document.querySelector(".site-header");
+    refreshBar.style.top = (siteHeader ? siteHeader.offsetHeight : 0) + "px";
+  }
+  positionRefreshBar();
+  window.addEventListener("resize", positionRefreshBar);
+
+  var dragStartY = null;
+  var isDragging = false;
+  var hasRevealed = false;
+
+  document.addEventListener("touchstart", function (e) {
+    if (window.scrollY > 0 || refreshBar.classList.contains("is-visible")) return;
+    dragStartY = e.touches[0].clientY;
+    isDragging = true;
+    hasRevealed = false;
+  }, { passive: true });
+
+  document.addEventListener("touchmove", function (e) {
+    if (!isDragging || dragStartY === null || hasRevealed) return;
+    var dragDistance = e.touches[0].clientY - dragStartY;
+    if (dragDistance > DRAG_THRESHOLD && window.scrollY === 0) {
+      hasRevealed = true;
+      positionRefreshBar();
+      refreshBar.classList.add("is-visible");
+    }
+  }, { passive: true });
+
+  document.addEventListener("touchend", function () {
+    isDragging = false;
+    dragStartY = null;
+  });
+
+  refreshBtn.addEventListener("click", function () {
+    refreshBar.classList.add("is-loading");
+    window.location.reload();
+  });
+
+  /* scrolling down to actually read, rather than tapping the button,
+     tucks the prompt back out of the way */
+  window.addEventListener("scroll", function () {
+    if (refreshBar.classList.contains("is-visible") && window.scrollY > 40) {
+      refreshBar.classList.remove("is-visible");
+    }
+  });
+})();
+
+
 if (window.matchMedia('(pointer: fine)').matches) {
 
   const track = document.createElement('div');
