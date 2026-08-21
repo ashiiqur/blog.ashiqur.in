@@ -43,11 +43,14 @@ html {
   scroll-behavior: smooth;
   /* stops the browser's own native pull-to-refresh reload at the very
      top of the page — the custom .refresh-bar below replaces it with a
-     tap-to-confirm button instead of an immediate reload. This is a
-     document-level containment only; it doesn't touch the .ledger's own
+     tap-to-confirm button instead of an immediate reload. `contain` turns
+     out not to be enough on Chrome/Android — it still lets the native
+     refresh gesture through, only `none` actually blocks it (it's also
+     set on body just below, since some WebViews check the body's value
+     instead of html's). This doesn't touch the .ledger's own
      overscroll-behavior further down, which is deliberately left at its
      default so scroll chains through to the page as before. */
-  overscroll-behavior-y: contain;
+  overscroll-behavior-y: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -62,6 +65,7 @@ html {
 
 body {
   margin: 0;
+  overscroll-behavior-y: none;
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
