@@ -56,6 +56,47 @@
     });
   }
 
+  /* lock out pinch/double-tap browser zoom, installed app only
+     Rule: an ordinary browser tab keeps its normal pinch/double-tap zoom
+     — that's the visitor's own browser chrome and shouldn't be touched.
+     Once installed there's no browser chrome to fall back on, so an
+     accidental pinch just leaves the app visually zoomed in with no
+     obvious way back out — worth preventing outright. Three layers,
+     since no single one is reliable across browsers on its own:
+       1. flip the viewport meta to maximum-scale=1/user-scalable=no
+       2. a body class (styles.css) sets touch-action so the browser
+          never offers pinch-zoom on any element to begin with
+       3. gesturestart/gesturechange + a manual multi-touch/double-tap
+          swallow, for iOS Safari standalone, which still fires pinch
+          and double-tap zoom sometimes even with 1 and 2 in place
+     None of this touches the photo viewer's own click-to-zoom/pan —
+     that's a separate, deliberate feature, not the browser's zoom. */
+  if (isInstalled) {
+    document.body.classList.add("is-app");
+
+    var viewportMeta = document.querySelector('meta[name="viewport"]');
+    if (viewportMeta) {
+      viewportMeta.setAttribute(
+        "content",
+        "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      );
+    }
+
+    document.addEventListener("gesturestart", function (e) { e.preventDefault(); });
+    document.addEventListener("gesturechange", function (e) { e.preventDefault(); });
+
+    document.addEventListener("touchmove", function (e) {
+      if (e.touches.length > 1) e.preventDefault(); // pinch
+    }, { passive: false });
+
+    var lastTouchEnd = 0;
+    document.addEventListener("touchend", function (e) {
+      var now = Date.now();
+      if (now - lastTouchEnd <= 300) e.preventDefault(); // double-tap
+      lastTouchEnd = now;
+    }, { passive: false });
+  }
+
   /* footer year */
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
