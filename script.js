@@ -1455,6 +1455,26 @@ function lazyLoadBackgrounds(elements, options) {
   });
 })();
 
+/* ledger entry arrow — the hover/focus reveal-and-slide is pure CSS (see
+   .entry-arrow in styles.css); this just gives the arrow the same forward
+   nudge on click as the back-link arrow, mainly so touch devices (no
+   hover state) still get the motion. */
+(function () {
+  "use strict";
+  document.querySelectorAll(".entry").forEach(function (entry) {
+    var arrow = entry.querySelector(".entry-arrow");
+    if (!arrow) return;
+    entry.addEventListener("click", function () {
+      arrow.classList.remove("is-clicked");
+      void arrow.offsetWidth; // restart the animation on repeat clicks
+      arrow.classList.add("is-clicked");
+    });
+    arrow.addEventListener("animationend", function () {
+      arrow.classList.remove("is-clicked");
+    });
+  });
+})();
+
 /* post viewer — a popup for the Posts grid (Photos, Videos, Files).
    Clicking a tile (anywhere except its share/download buttons, which
    keep working exactly as before) opens one shared modal. What's shown
