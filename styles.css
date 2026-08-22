@@ -1700,6 +1700,7 @@ body.viewer-open .custom-scrollbar-track { display: none !important; }
   .post-nav,
   .back-link,
   .post-downloads,
+  .refresh-bar,
   .viewer { display: none !important; }
 
   body { background: #fff; font-size: 12pt; }
