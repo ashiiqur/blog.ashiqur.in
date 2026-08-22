@@ -509,12 +509,10 @@ section.block + section.block { border-top: 1px solid var(--rule); }
 .entry:hover { opacity: .72; }
 
 /* forward arrow — always visible; brightens and nudges forward on
-   hover/keyboard-focus, plus a click nudge for touch (no hover state)
-   that also flashes the arrow to --tap-accent for the duration of the
-   nudge, so the click itself reads as a distinct color change rather
-   than just a bump in position. Positioned absolutely on the right
-   edge so it doesn't disturb the existing date/title/tag grid columns
-   above. */
+   hover/keyboard-focus. On click (mainly for touch, which has no hover
+   state) it just flashes to --tap-accent and fades back — no position
+   nudge, color only. Positioned absolutely on the right edge so it
+   doesn't disturb the existing date/title/tag grid columns above. */
 .entry-arrow {
   position: absolute;
   right: 0;
@@ -531,13 +529,13 @@ section.block + section.block { border-top: 1px solid var(--rule); }
   transform: translate(4px, -50%);
 }
 .entry-arrow.is-clicked {
-  animation: entry-arrow-nudge .45s ease;
+  animation: entry-arrow-flash .45s ease;
 }
-@keyframes entry-arrow-nudge {
-  0%   { transform: translate(0, -50%); color: var(--ink-faint); }
-  40%  { transform: translate(9px, -50%); color: var(--tap-accent); }
-  70%  { transform: translate(3px, -50%); color: var(--tap-accent); }
-  100% { transform: translate(0, -50%); color: var(--ink-faint); }
+@keyframes entry-arrow-flash {
+  0%   { color: var(--ink-faint); }
+  40%  { color: var(--tap-accent); }
+  70%  { color: var(--tap-accent); }
+  100% { color: var(--ink-faint); }
 }
 .entry-date {
   font-family: var(--font-mono);
