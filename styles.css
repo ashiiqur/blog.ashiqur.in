@@ -506,34 +506,33 @@ section.block + section.block { border-top: 1px solid var(--rule); }
 }
 .entry:hover { opacity: .72; }
 
-/* forward arrow — hidden until hover/keyboard-focus, then slides in from
-   the left, plus a click nudge for touch (no hover state). Positioned
-   absolutely on the right edge so it doesn't disturb the existing
-   date/title/tag grid columns above. */
+/* forward arrow — always visible; brightens and nudges forward on
+   hover/keyboard-focus, plus a click nudge for touch (no hover state).
+   Positioned absolutely on the right edge so it doesn't disturb the
+   existing date/title/tag grid columns above. */
 .entry-arrow {
   position: absolute;
   right: 0;
   top: 50%;
   display: inline-flex;
-  color: var(--accent);
-  opacity: 0;
-  transform: translate(-4px, -50%);
-  transition: opacity .25s ease, transform .25s ease;
+  color: var(--ink-faint);
+  transform: translate(0, -50%);
+  transition: color .25s ease, transform .25s ease;
 }
 .entry-arrow svg { width: 14px; height: 14px; display: block; }
 .entry:hover .entry-arrow,
 .entry:focus-visible .entry-arrow {
-  opacity: 1;
-  transform: translate(0, -50%);
+  color: var(--accent);
+  transform: translate(4px, -50%);
 }
 .entry-arrow.is-clicked {
   animation: entry-arrow-nudge .45s ease;
 }
 @keyframes entry-arrow-nudge {
-  0%   { opacity: 1; transform: translate(0, -50%); }
-  40%  { opacity: 1; transform: translate(9px, -50%); }
-  70%  { opacity: 1; transform: translate(3px, -50%); }
-  100% { opacity: 1; transform: translate(0, -50%); }
+  0%   { transform: translate(0, -50%); }
+  40%  { transform: translate(9px, -50%); }
+  70%  { transform: translate(3px, -50%); }
+  100% { transform: translate(0, -50%); }
 }
 .entry-date {
   font-family: var(--font-mono);
