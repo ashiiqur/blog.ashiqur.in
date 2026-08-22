@@ -491,8 +491,13 @@
     align-items: center;
     justify-content: center;
     gap: var(--space-4);
-    min-height: 100vh;
-    min-height: 100dvh;
+    min-height: 100vh;  /* fallback for browsers without svh support */
+    /* svh (small viewport height), not dvh: dvh keeps recalculating live
+       as the address bar hides/shows while scrolling, so a box sized
+       with it visibly resizes on every frame of that transition — the
+       "glitch" on mobile. svh is pinned to the viewport size with the
+       address bar shown, so it never changes mid-scroll. */
+    min-height: 100svh;
     padding: var(--space-6) 0;
   }
   /* the shared .avatar-pixel-wrap rule above sets left/right
@@ -533,8 +538,8 @@
       justify-content: center;
       align-items: center;
       gap: var(--space-3);
-      min-height: 100vh;
-      min-height: 100dvh;
+      min-height: 100vh;  /* fallback for browsers without svh support */
+      min-height: 100svh; /* see note on the base .not-found rule above */
       padding: var(--space-4) 0;
       transform: translateY(-3%);
     }
