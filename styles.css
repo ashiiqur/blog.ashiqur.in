@@ -76,6 +76,24 @@ body {
   transition: background .35s ease, color .35s ease;
 }
 
+/* ---------- SEO / a11y: visually hidden ---------- */
+/* Keeps text in the DOM (readable by screen readers and search-engine
+   crawlers) without showing it on screen or shifting layout. script.js
+   uses this to attach a "by Ashiqur Rahman" byline to every entry,
+   post, and work tile automatically — nothing to style or add by hand
+   when new tiles are added later. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* installed app only (script.js adds this class): backs the JS-side
    pinch/double-tap zoom lockout at the CSS layer, so the browser never
    offers pinch-zoom on any element in the first place rather than

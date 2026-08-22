@@ -1,12 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--
+  SEO identity, single edit point:
+  The data-author* attributes below are the one place to update if the
+  name, handle, profile links, or canonical "about" URL ever change.
+  script.js reads them at runtime to build the "by Ashiqur Rahman" byline
+  on every entry/post/work tile AND the per-item structured data (JSON-LD)
+  that search engines actually use — so nothing else in this file, or in
+  any future entry/post/work you add, needs to repeat the author's name
+  by hand. Site-wide identity (Person/WebSite/Blog) lives once in the
+  static ld-json-site block further down in <head> — edit that only if
+  the identity details themselves change, not per post.
+-->
+<html lang="en"
+      data-author="Ashiqur Rahman"
+      data-author-handle="ashiqur"
+      data-author-url="https://blog.ashiqur.in/about/">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Writing - ashiqur</title>
 <meta name="description" content="Entries, Posts & Works by Ashiqur Rahman.">
+<meta name="author" content="Ashiqur Rahman">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#dcddd8">
+<link rel="author" href="../about/">
+<link rel="me" href="https://x.com/ashiqur_sf">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ashiqur">
@@ -77,6 +95,45 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Work+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://blog.ashiqur.in/blog/">
 <link rel="stylesheet" href="../styles.css">
+
+<!-- SEO: site-wide identity (Person/WebSite/Blog). This is the only
+     structured-data block written by hand — edit it if the identity
+     itself changes (name, links). Per-entry/post/work structured data
+     is generated automatically by script.js from the tiles already on
+     the page, so it never needs a matching manual edit here. -->
+<script type="application/ld+json" id="ld-json-site">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://blog.ashiqur.in/#person",
+      "name": "Ashiqur Rahman",
+      "alternateName": "ashiqur",
+      "url": "https://blog.ashiqur.in/about/",
+      "sameAs": [
+        "https://x.com/ashiqur_sf"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://blog.ashiqur.in/#website",
+      "url": "https://blog.ashiqur.in/",
+      "name": "ashiqur",
+      "author": { "@id": "https://blog.ashiqur.in/#person" },
+      "publisher": { "@id": "https://blog.ashiqur.in/#person" }
+    },
+    {
+      "@type": "Blog",
+      "@id": "https://blog.ashiqur.in/blog/#blog",
+      "url": "https://blog.ashiqur.in/blog/",
+      "name": "The Blog",
+      "isPartOf": { "@id": "https://blog.ashiqur.in/#website" },
+      "author": { "@id": "https://blog.ashiqur.in/#person" }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 

@@ -138,6 +138,99 @@
   }
 })();
 
+/* ---------- SEO: author byline + structured data (auto-generated) ----------
+   The only thing worth knowing before touching this: a data-* attribute
+   is never read by a search engine — it's just a hook for CSS/JS. What
+   actually helps a search show your name for content is (a) real text
+   naming you, and (b) schema.org structured data (JSON-LD) marking that
+   text as yours. This block produces both, and reads all of it from
+   document.documentElement's data-author* attributes (set once in
+   index.html's <html> tag), so renaming/rebranding is a one-line change
+   here instead of a find-and-replace across every entry.
+
+   Runs on any page that has entry/post/work tiles. For each one already
+   on the page (.ledger .entry, .posts-grid .post-tile, .works-list
+   .work-card) it:
+     1. Appends a visually-hidden "By <name>" byline (see .visually-hidden
+        in styles.css) — invisible on screen, but real text a crawler
+        reads, so it costs nothing in the design.
+     2. Adds a matching schema.org node (BlogPosting for entries,
+        CreativeWork for posts/works) to a JSON-LD graph, crediting the
+        author by @id-reference to the Person defined once in the static
+        #ld-json-site block in <head>.
+   Net effect: adding a new entry/post/work later means writing its tile
+   exactly as you already do (title, date, link) — nothing SEO-related to
+   add by hand, this script picks it up automatically on next page load. */
+(function () {
+  "use strict";
+  var root = document.documentElement;
+  var authorName = root.getAttribute("data-author") || "Ashiqur Rahman";
+  var personId = "https://blog.ashiqur.in/#person";
+
+  function addByline(container) {
+    if (!container || container.querySelector(".byline")) return;
+    var span = document.createElement("span");
+    span.className = "byline visually-hidden";
+    span.textContent = "By " + authorName;
+    container.appendChild(span);
+  }
+
+  function text(el) {
+    return el ? el.textContent.trim() : "";
+  }
+
+  function absoluteUrl(href) {
+    try { return new URL(href, window.location.href).href; }
+    catch (e) { return href || undefined; }
+  }
+
+  var graph = [];
+
+  document.querySelectorAll(".ledger > .entry").forEach(function (el) {
+    addByline(el);
+    graph.push({
+      "@type": "BlogPosting",
+      "headline": text(el.querySelector(".entry-title")),
+      "datePublished": text(el.querySelector(".entry-date")),
+      "url": absoluteUrl(el.getAttribute("href")),
+      "author": { "@id": personId },
+      "publisher": { "@id": personId }
+    });
+  });
+
+  document.querySelectorAll(".posts-grid > .post-tile").forEach(function (el) {
+    addByline(el.querySelector(".post-caption") || el);
+    var src = el.getAttribute("data-src");
+    graph.push({
+      "@type": "CreativeWork",
+      "name": text(el.querySelector(".post-title")),
+      "datePublished": text(el.querySelector(".post-date")).replace(/^Uploaded\s*/, ""),
+      "url": src ? absoluteUrl(src) : undefined,
+      "author": { "@id": personId },
+      "creator": { "@id": personId }
+    });
+  });
+
+  document.querySelectorAll(".works-list > .work-card").forEach(function (el) {
+    addByline(el.querySelector(".work-body") || el);
+    graph.push({
+      "@type": "CreativeWork",
+      "name": text(el.querySelector(".work-title")),
+      "datePublished": text(el.querySelector(".entry-date")),
+      "author": { "@id": personId },
+      "creator": { "@id": personId }
+    });
+  });
+
+  if (!graph.length) return;
+
+  var ldScript = document.createElement("script");
+  ldScript.type = "application/ld+json";
+  ldScript.id = "ld-json-items";
+  ldScript.textContent = JSON.stringify({ "@context": "https://schema.org", "@graph": graph });
+  document.head.appendChild(ldScript);
+})();
+
 /* ---------- entry download: PDF / Markdown ----------
    Post pages only (detected by .post-body — nothing to touch on the
    Writing grid, About, or Contact). Injects a small action row right
