@@ -60,4 +60,4 @@ This repository powers [blog.ashiqur.in](https://blog.ashiqur.in) - my personal 
 
 ## License
 
-Content and code in this repository are © Ashiqur Rahman unless otherwise noted.
+Content in this repository are © ashiqur unless otherwise noted.
