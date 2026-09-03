@@ -517,6 +517,22 @@
       refreshBar.classList.remove("is-visible");
     }
   });
+
+  /* the bar's `top` is only ever recalculated on init, on window resize,
+     and right before a reveal — never when the mobile nav's dropdown
+     opens/closes, which grows/shrinks .site-header itself (see the
+     grid-template-rows trick in styles.css). Left alone, an
+     already-revealed bar keeps the `top` it had before the toggle,
+     so it freezes at the old header height instead of tracking it, and
+     never gets told to hide either. Tucking it away on every nav toggle
+     sidesteps both: it slides off cleanly, and next time it's genuinely
+     revealed positionRefreshBar() runs fresh against the settled height. */
+  var navToggleEl = document.querySelector(".nav-toggle");
+  if (navToggleEl) {
+    navToggleEl.addEventListener("click", function () {
+      refreshBar.classList.remove("is-visible");
+    });
+  }
 })();
 
 
