@@ -981,7 +981,7 @@ html {
   display: flex;
   justify-content: center;
   transform: translateY(-130%);
-  transition: transform .28s ease;
+  transition: transform .28s ease, top .28s ease;
   pointer-events: none;
 }
 .refresh-bar.is-visible {

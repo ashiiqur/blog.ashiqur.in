@@ -514,24 +514,38 @@
      tucks the prompt back out of the way */
   window.addEventListener("scroll", function () {
     if (refreshBar.classList.contains("is-visible") && window.scrollY > 40) {
-      refreshBar.classList.remove("is-visible");
+      hideRefreshBar();
     }
   });
+
+  /* hides the bar AND resets `top` back to a safe 0 baseline. The
+     hidden state relies on `transform: translateY(-130%)` to tuck the
+     bar above the viewport, but that percentage is relative to the
+     bar's OWN (small) height, not to `top` — it only clears the
+     viewport reliably when `top` is small (a normal, nav-closed header
+     height). If the bar was last revealed while the mobile nav's
+     dropdown was open, `top` was captured against that much taller
+     expanded header, and -130% of the bar's own height isn't nearly
+     enough offset to clear it — the bar just sits there, still
+     visible, even with `is-visible` removed. Resetting `top` to 0
+     whenever we hide it — with `top` now in the transition list above —
+     fixes that: the reveal always starts from a safe baseline, and it
+     animates there smoothly instead of jumping. The next real reveal
+     recalculates the correct `top` fresh via positionRefreshBar(). */
+  function hideRefreshBar() {
+    refreshBar.classList.remove("is-visible");
+    refreshBar.style.top = "0px";
+  }
 
   /* the bar's `top` is only ever recalculated on init, on window resize,
      and right before a reveal — never when the mobile nav's dropdown
      opens/closes, which grows/shrinks .site-header itself (see the
-     grid-template-rows trick in styles.css). Left alone, an
-     already-revealed bar keeps the `top` it had before the toggle,
-     so it freezes at the old header height instead of tracking it, and
-     never gets told to hide either. Tucking it away on every nav toggle
-     sidesteps both: it slides off cleanly, and next time it's genuinely
-     revealed positionRefreshBar() runs fresh against the settled height. */
+     grid-template-rows trick in styles.css). Tucking the bar away (see
+     hideRefreshBar above) on every nav toggle keeps it from freezing
+     at a stale, wrong height. */
   var navToggleEl = document.querySelector(".nav-toggle");
   if (navToggleEl) {
-    navToggleEl.addEventListener("click", function () {
-      refreshBar.classList.remove("is-visible");
-    });
+    navToggleEl.addEventListener("click", hideRefreshBar);
   }
 })();
 
